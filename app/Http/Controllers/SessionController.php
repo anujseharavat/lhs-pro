@@ -34,7 +34,22 @@ class SessionController extends Controller
      */
     public function store(Request $request)
     {
-        //
+//        dump(request('email'));
+//        dd(request('password'));
+        $this->validate($request, [
+            'email' => 'required|email',
+            'password' => 'required',
+        ]);
+        if (!auth()->attempt([
+            'email' => request('email'),
+            'password' => request('password')])){
+
+            return back()->withErrors([
+                'message' => 'Please check your credentials and try again'
+            ]);
+        }
+        //return redirect()->route('academic');
+        return redirect()->home();
     }
 
     /**
@@ -79,6 +94,7 @@ class SessionController extends Controller
      */
     public function destroy($id)
     {
-        //
+        auth()->logout();
+        return redirect()->home();
     }
 }
