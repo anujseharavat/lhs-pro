@@ -147,8 +147,9 @@
                         <!-- END: MOBILE VERSION OF THE TAB MEGA MENU -->
                     </li>
                     <li class="c-search-toggler-wrapper">
-                        <a href="#" class="c-btn-icon c-search-toggler">
-                            <i class="fa fa-search"></i>
+                        <a href="/shop/shop-cart" class="c-link dropdown-toggle">
+                            <i class="fa fa-shopping-cart" area-hidden="true"></i>
+                            <span class="badge"> {{ Session::has('cart') ? Session::get('cart')->totalQty : '' }} </span>
                         </a>
                     </li>
 
