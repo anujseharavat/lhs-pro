@@ -4,14 +4,30 @@
 @endsection
 
 @section ('content')
+    <!-- BEGIN: LAYOUT/BREADCRUMBS/BREADCRUMBS-2 -->
+    @section('cart-title')
+        Shopping Cart
+    @endsection
+    @section('cart-subtitle')
+        Checkout
+    @endsection
+    @section('cart-level-1')
+        Shop
+    @endsection
+    @section('cart-level-2')
+        Checkout
+    @endsection
+    <!-- END: LAYOUT/BREADCRUMBS/BREADCRUMBS-2 -->
     <div class="row">
         <div class="col-sm-6 col-md-4 col-md-offset-4 col-sm-offset-3">
             <h1>Checkout</h1>
             <h4>Your Total: ${{ $total  }}</h4>
             <form action="{{route('checkout')}}" method="post" id="checkout-form">
-                <div id="charge-error" class="alert alert-danger {{ !Session::has('error') }}  ? 'hidden': '' ">
-                    {{ Session::get('error') }}
-                </div>
+                @if (Session::has('error'))
+                    <div id="charge-error" class="alert alert-danger {{ !Session::has('error') }}  ? 'hidden': '' ">
+                        {{ Session::get('error') }}
+                    </div>
+                @endif
                 <div class="row">
                     <div class="col-xs-12">
                         <div class="form-group">

@@ -53,7 +53,7 @@ Follow: http://www.twitter.com/themehats
 
 <body class="c-layout-header-fixed c-layout-header-mobile-fixed c-layout-header-topbar c-layout-header-topbar-collapse">
 @include('layout.shop.header')
-@include('shop.forgot-password')
+@include('layout.shop.partial.forgot-password')
 @include('layout.shop.partial.signin-modal')
 @include('layout.shop.partial.signup-modal')
 
@@ -63,19 +63,17 @@ Follow: http://www.twitter.com/themehats
     <div class="c-layout-breadcrumbs-1 c-subtitle c-fonts-uppercase c-fonts-bold c-bordered c-bordered-both">
         <div class="container">
             <div class="c-page-title c-pull-left">
-                <h3 class="c-font-uppercase c-font-sbold">Cart</h3>
-                <h4 class="">Page Sub Title Goes Here</h4>
+                <h3 class="c-font-uppercase c-font-sbold">@yield('cart-title')</h3>
+                <h4 class="">@yield('cart-subtitle')</h4>
             </div>
             <ul class="c-page-breadcrumbs c-theme-nav c-pull-right c-fonts-regular">
                 <li>
-                    <a href="#">Shop</a>
+                    <a href="#">@yield('cart-level-1')</a>
                 </li>
                 <li>/</li>
                 <li>
-                    <a href="shop-cart.html">Shopping Cart</a>
+                    <a href="#">@yield('cart-level-2')</a>
                 </li>
-                <li>/</li>
-                <li class="c-state_active">Lets Home Study Components</li>
             </ul>
         </div>
     </div>

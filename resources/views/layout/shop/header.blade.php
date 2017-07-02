@@ -189,17 +189,17 @@
 
                         <li>
                             @if (Auth::check())
-                                <a href="javascript:;" data-toggle="modal" data-target="#login-form" class="c-btn-border-opacity-04 c-btn btn-no-focus c-btn-header btn btn-sm c-btn-border-1x c-btn-dark c-btn-circle c-btn-uppercase c-btn-sbold">
+                                <a href="javascript:;" data-toggle="modal" class="c-btn-border-opacity-04 c-btn btn-no-focus c-btn-header btn btn-sm c-btn-border-1x c-btn-dark c-btn-circle c-btn-uppercase c-btn-sbold">
                                     <i class="icon-user"></i> {{ Auth::user()->lastName }}, {{ Auth::user()->firstName }}</a>
                                 <ul class="dropdown-menu c-menu-type-classic c-pull-left">
                                     <li class="dropdown-submenu">
-                                        <a href="/logout/{{Auth::user()->id}}">logout
+                                        <a href="/user/logout/{{Auth::user()->id}}">logout
                                             <span class="c-arrow c-toggler"></span>
                                         </a>
 
                                     </li>
                                     <li class="dropdown-submenu">
-                                        <a href="#">My Profile
+                                        <a href="/user/dashboard">My Profile
                                             <span class="c-arrow c-toggler"></span>
                                         </a>
                                     </li>

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Session;
 
 class SessionController extends Controller
 {
@@ -23,8 +24,9 @@ class SessionController extends Controller
      */
     public function create()
     {
-        return view('shop.signin');
+        return view('user.signin');
     }
+
 
     /**
      * Store a newly created resource in storage.
@@ -48,8 +50,15 @@ class SessionController extends Controller
                 'message' => 'Please check your credentials and try again'
             ]);
         }
+        if (Session::has('oldUrl')){
+            $oldUrl = Session::get('oldUrl');
+            Session::forget('oldUrl');
+            return redirect()->back();
+        }
+
         //return redirect()->route('academic');
-        return redirect()->home();
+        //return redirect()->home();
+        return Redirect::back();
     }
 
     /**

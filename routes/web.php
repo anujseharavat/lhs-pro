@@ -23,21 +23,33 @@
 //})->name('home');
 
 Route::get('/', 'ProductController@index')->name('home');
-Route::get('/add-to-cart/{id}', 'ProductController@getAddToCart')->name('product.addToCart');
-Route::get('/shop/shop-cart', 'ProductController@getCart')->name('product.shopCart');
-Route::get('/shop/checkout', 'ProductController@getCheckout')->name('checkout')->middleware('auth');
-Route::post('/shop/checkout', 'ProductController@postCheckout')->name('checkout')->middleware('auth');
-
+Route::prefix('shop')->group(function () {
+    Route::get('add-to-cart/{id}', 'ProductController@getAddToCart')->name('product.addToCart');
+    Route::get('shop-cart', 'ProductController@getCart')->name('product.shopCart');
+    Route::get('checkout', 'ProductController@getCheckout')->name('checkout')->middleware('auth');
+    Route::post('checkout', 'ProductController@postCheckout')->name('checkout')->middleware('auth');
+});
 //Route::get('/shop/shop-cart', function () {
 //    return view('shop.shop-cart');
 // })->name('product.shoppingCart');
 //Route::get('/shop/shop-cart', 'ShopController@index');
 
+Route::prefix('user')->group(function () {
+    Route::middleware('guest')->group(function() {
+        Route::get('register', 'RegistrationController@create');
+        Route::post('register', 'RegistrationController@store');
 
-Route::get('/register', 'RegistrationController@create');
-Route::post('/register', 'RegistrationController@store');
+        Route::get('login', 'SessionController@create')->name('login');
+        Route::post('login', 'SessionController@store');
+    });
+    Route::middleware('auth')->group(function(){
+        Route::get('logout/{id}', 'SessionController@destroy')->name('logout');
+        Route::get('dashboard', 'UserController@getUserDashboard');
+        Route::get('order-history', 'UserController@getUserOrderHistory');
+    });
+});
 
-Route::get('/login', 'SessionController@create')->name('login');
-Route::post('/login', 'SessionController@store');
-Route::get('/logout/{id}', 'SessionController@destroy');
 
+//Auth::routes();
+//
+//Route::get('/home', 'HomeController@index')->name('home');

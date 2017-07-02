@@ -11,19 +11,19 @@
 <!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
 
 <!-- BEGIN: CONTENT/USER/FORGET-PASSWORD-FORM -->
-@include('home.forgot-password')
+@include('layout.home.partial.forgot-password')
 <!-- END: CONTENT/USER/FORGET-PASSWORD-FORM -->
 <!-- BEGIN: CONTENT/USER/SIGNUP-FORM -->
-@include('home.signup')
+@include('layout.home.partial.signup')
 <!-- END: CONTENT/USER/SIGNUP-FORM -->
 <!-- BEGIN: CONTENT/USER/LOGIN-FORM -->
-@include('home.signin')
+@include('layout.home.partial.signin')
 <!-- END: CONTENT/USER/LOGIN-FORM -->
 <!-- BEGIN: LAYOUT/SIDEBARS/QUICK-SIDEBAR -->
 
 <!-- END: LAYOUT/SIDEBARS/QUICK-SIDEBAR -->
 <!-- BEGIN: PAGE CONTAINER -->
-@include('home.container');
+@include('layout.home.partial.container');
 <!-- END: PAGE CONTAINER -->
 <!-- BEGIN: LAYOUT/FOOTERS/FOOTER-6 -->
 @include('layout.home.footer');
@@ -68,7 +68,16 @@
 <!-- BEGIN: PAGE SCRIPTS -->
 <script>
     @if (count($errors) > 0)
-    $('#signup-form').modal('show');
+
+    //alert(javaScriptVar);
+        @foreach($errors->all() as $error)
+            var err = "<?php echo $error; ?>";
+            if (err.indexOf('Please check your credentials') >= 0) {
+                $('#signin-form').modal('show');
+            }else {
+                $('#signup-form').modal('show');
+            }
+        @endforeach
     @endif
 $(document).ready(function()
     {

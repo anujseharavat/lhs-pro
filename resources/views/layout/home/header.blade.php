@@ -159,14 +159,14 @@
                                 <i class="icon-user"></i> {{ Auth::user()->lastName }}, {{ Auth::user()->firstName }} </a>
                             <ul class="dropdown-menu c-menu-type-classic c-pull-left">
                                 <li class="dropdown-submenu">
-                                    <a href="/logout/{{Auth::user()->id}}">logout
+                                    <a href="user/logout/{{Auth::user()->id}}">logout
                                         <span class="c-arrow c-toggler"></span>
                                     </a>
 
                                 </li>
                             </ul>
                         @else
-                            <a href="javascript:;" data-toggle="modal" data-target="#login-form" class="c-btn-border-opacity-04 c-btn btn-no-focus c-btn-header btn btn-sm c-btn-border-1x c-btn-white c-btn-circle c-btn-uppercase c-btn-sbold">
+                            <a href="javascript:;" data-toggle="modal" data-target="#signin-form" class="c-btn-border-opacity-04 c-btn btn-no-focus c-btn-header btn btn-sm c-btn-border-1x c-btn-white c-btn-circle c-btn-uppercase c-btn-sbold">
                                 <i class="icon-user"></i> Sign In</a>
                         @endif
                     </li>

@@ -89,6 +89,7 @@ class ProductController extends Controller
             return redirect()->route('checkout')->with('error', $e->getMessage());
         }
         Session::forget('cart');
-        return redirect()->route('home')->with('success', 'You successfully purchased the products');
+        Session::put('shop-success', 'You successfully purchased the products');
+        return redirect()->route('home')->with('shop-success', 'You successfully purchased the products');
     }
 }

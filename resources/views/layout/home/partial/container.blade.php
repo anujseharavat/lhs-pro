@@ -8,6 +8,6 @@
 {{--@include('home.stat-counter')--}}
 {{--@include('home.tab-2')--}}
 {{--@include('home.latest-work')--}}
-@include('home.product-price')
+@include('layout.home.partial.product-price')
     <!-- END: PAGE CONTENT -->
 </div>

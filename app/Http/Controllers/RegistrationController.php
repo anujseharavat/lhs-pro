@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\User;
+use Session;
 
 class RegistrationController extends Controller
 {
@@ -48,6 +49,11 @@ class RegistrationController extends Controller
         ]);
         auth()->login($user);
 
+        if (Session::has('oldUrl')){
+            $oldUrl = Session::get('oldUrl');
+            Session::forget('oldUrl');
+            return redirect()->to($oldUrl);
+        }
         //$user = User::all()->first();
         //session('message','this is details message');
         //session()->flash('message', 'thanks so much for signup');
@@ -61,7 +67,7 @@ class RegistrationController extends Controller
      */
     public function create()
     {
-        //
+        return view('user.signup');
     }
 
     /**
