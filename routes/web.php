@@ -22,13 +22,23 @@
 //    return view('index', compact('products', 'columns'));
 //})->name('home');
 
-Route::get('/', 'ProductController@index')->name('home');
+Route::get('/', 'CourseController@index')->name('home');
 Route::prefix('shop')->group(function () {
-    Route::get('add-to-cart/{id}', 'ProductController@getAddToCart')->name('product.addToCart');
-    Route::get('shop-cart', 'ProductController@getCart')->name('product.shopCart');
-    Route::get('checkout', 'ProductController@getCheckout')->name('checkout')->middleware('auth');
-    Route::post('checkout', 'ProductController@postCheckout')->name('checkout')->middleware('auth');
+    Route::get('add-to-cart/{id}', 'ShopController@getAddToCart')->name('product.addToCart');
+    Route::get('shop-cart', 'ShopController@getCart')->name('product.shopCart');
+    Route::get('checkout', 'ShopController@getCheckout')->name('checkout')->middleware('auth');
+    Route::post('checkout', 'ShopController@postCheckout')->name('checkout')->middleware('auth');
+    Route::get('remove-from-cart/{id}', 'ShopController@getRemoveFromCart')->name('cart.remove');
 });
+Route::get('/test', 'ShopController@test')->name('test');
+Route::get('/course', 'ShopController@course')->name('course');
+
+//Route::prefix('room')->group(function () {
+//    Route::middleware('auth')->group(function(){
+//        Route::get('index/{id}', 'UserController@index')->name('room.index');
+//        Route::get('dashboard', 'UserController@getUserDashboard');
+//    });
+//});
 //Route::get('/shop/shop-cart', function () {
 //    return view('shop.shop-cart');
 // })->name('product.shoppingCart');
@@ -45,7 +55,18 @@ Route::prefix('user')->group(function () {
     Route::middleware('auth')->group(function(){
         Route::get('logout/{id}', 'SessionController@destroy')->name('logout');
         Route::get('dashboard', 'UserController@getUserDashboard');
+        //room
+        Route::get('index', 'UserController@getUserIndex');
+        Route::get('profile', 'UserController@getUserProfile');
+        Route::post('profile', 'UserController@postUserProfile');
+        Route::get('order-history-room', 'UserController@getUserOrderHistoryRoom');
+
+        Route::get('purchase-history', 'UserController@getPurchaseHistory');
+        Route::get('reset-password', 'UserController@getResetPassword');
+        Route::post('reset-password', 'UserController@postResetPassword');
+        //end room
         Route::get('order-history', 'UserController@getUserOrderHistory');
+        Route::get('semester-room', 'UserController@getUserSemesterRoom');
     });
 });
 

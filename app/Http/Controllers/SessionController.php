@@ -24,7 +24,8 @@ class SessionController extends Controller
      */
     public function create()
     {
-        return view('user.signin');
+//        return view('user.signin');
+        return view('user.signin2');
     }
 
 
@@ -53,12 +54,12 @@ class SessionController extends Controller
         if (Session::has('oldUrl')){
             $oldUrl = Session::get('oldUrl');
             Session::forget('oldUrl');
-            return redirect()->back();
+            return redirect($oldUrl);
         }
 
         //return redirect()->route('academic');
         //return redirect()->home();
-        return Redirect::back();
+        return redirect()->back();
     }
 
     /**
@@ -104,6 +105,7 @@ class SessionController extends Controller
     public function destroy($id)
     {
         auth()->logout();
+        session()->forget('cart');
         return redirect()->home();
     }
 }

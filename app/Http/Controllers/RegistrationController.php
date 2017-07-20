@@ -28,21 +28,21 @@ class RegistrationController extends Controller
     {
         //dd('store');
         $this->validate($request,[
-            'firstName' => 'required'
-            ,'lastName' => 'required'
-            ,'country' => 'required'
+            'first_name' => 'required|string|min:1'
+            ,'last_Name' => 'required|string|min:1'
+            ,'country' => 'required|string|min:1'
             ,'email' => 'required|email'
             ,'password'=>'required'
         ]);
-
-//        dump(request('firstName'));
-//        dump(request('lastName'));
+//dd(request('first_name'));
+//        dump(request('first_name'));
+//        dump(request('last_name'));
 //        dump(request('country'));
 //        dump(request('email'));
 //        dd(request('password'));
         $user = User::create([
-            'firstName' => request('firstName'),
-            'lastName' => request('lastName'),
+            'first_name' => request('first_name'),
+            'last_name' => request('last_Name'),
             'country' => request('country'),
             'email' => request('email'),
             'password' => bcrypt(request('password'))
@@ -57,7 +57,7 @@ class RegistrationController extends Controller
         //$user = User::all()->first();
         //session('message','this is details message');
         //session()->flash('message', 'thanks so much for signup');
-        return redirect()->home();//->with('myemail', $user->firstName);
+        return redirect()->home();//->with('myemail', $user->first_name);
     }
 
     /**

@@ -1,0 +1,178 @@
+		bodybody {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 100%;
+  background: #efefef;
+  font-size: 14px;
+}
+
+		.container {
+		  height: 100%;
+		  margin-top: 15%;
+		}
+
+		.cube {
+		  position: center;
+		  margin: 0 auto;
+
+		  text-align: center;
+		  height: 400px;
+		  width: 400px;
+		  transform-style: preserve-3d;
+		  animation: spin 9s infinite alternate;
+		}
+
+		@keyframes  spin {
+		  0% {
+			transform: rotateX(90deg) rotateY(360deg) translateZ(0px);
+		  }
+		}
+
+		.side {
+		  position: absolute;
+		  height:  200px;
+		  width:  200px;
+		  opacity: 0.8;
+		  background: white;
+		  transition: .5s;	
+
+		}
+
+		.one {
+		  transform: rotateX(-90deg) translateZ(100px);
+		  background: #ffff00; //yellow
+
+
+		}
+
+		.two {
+		  transform: translateZ(100px);
+		  background: #40ff00; //green
+		}
+
+		.three {
+		  transform: rotateY(180deg) translateZ(100px);
+		  background: #00bfff; //blue
+		}
+
+		.four {
+		  transform: rotateX(90deg) translateZ(100px);
+		  background: #8000ff; //purple
+		}
+
+		.five {
+		  transform: rotateY(90deg) translateZ(100px);
+		  background: #ff00ff; //pink
+		}
+
+		.six {
+		  transform: rotateY(-90deg) translateZ(100px);
+		  background: #ff0000; //red
+		}
+
+		.side img, .menuSide img{
+		  dispay: block;
+		  margin: auto;
+		  position: absolute;
+		  left: 5%;
+		  top: 5%;
+		  width: 90%;
+		}
+
+		.cube img:hover {
+			  margin: 10px;
+			  box-shadow: 2px 2px 4px rgba(0,0,0, 0.4);
+			  transform: scale(1.1);
+			}
+			
+			
+		.menuBar {
+		  position: relative;
+		  display: inline;
+
+		  text-align: center;
+		  margin: 0 auto;
+
+		  height: 200px;
+		  width: 200px;
+
+		  
+		  
+		}
+
+			
+		.menuSide {
+		  position: relative;
+			display: inline-block;
+			vertical-align: top;
+			  height:  200px;
+		  width:  200px;
+		  opacity: 0.8;		  
+		}
+
+		.menuOne {
+		
+		  background: #ffff00; //yellow
+
+		}
+
+
+		.menuTwo {
+
+		  background: #40ff00; //green
+
+		}
+
+		.menuThree {
+
+		  background: #00bfff;
+
+		}
+
+		.menuFour {
+
+		  background: #8000ff;
+		}
+
+		.menuFive {
+	
+		  background: #ff00ff; //pink
+		}
+
+		.menuSix {
+
+		  background: #ff0000; //red
+		}
+		
+		.menuSide :hover {
+			  margin: 0;
+			  text-shadow: 4px 4px 4px rgba(0,0,0, 0.4);
+			  transform: scale(1.1);
+			}
+			
+		.cube p {
+			text-align: bottom;
+			font-weight: 10px;
+			color: white;
+			font-family: 'Lucida Sans', Helvetica, Arial, sans-serif;
+			font-size: 2.8em;
+			margin: 0;
+			vertical-align: middle;
+		}
+
+		.menuBar p {
+					text-align: center;
+					font-weight: 20px;
+					color: white;
+					margin: 0;
+					font-family: 'Lucida Sans', Helvetica, Arial, sans-serif;
+					font-size: 2.8em;
+					vertical-align: middle;
+		}
+		
+		a{
+					text-decoration: none;
+		}
+
+	

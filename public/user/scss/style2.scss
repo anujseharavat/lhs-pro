@@ -1,0 +1,265 @@
+@import "compass/css3";
+
+$main-color: #2c3e50; //BG COLOR
+$secondary-color: #e74c3c; //HOVER COLOR
+$icon-size: 100px; // Only changes CSS,JQ,JS,PHP,WP- because I had to use actual images for that.
+
+@import url(http://code.ionicframework.com/ionicons/1.5.2/css/ionicons.min.css);
+@import url(http://fonts.googleapis.com/css?family=Lato:100,300,400,700,900,100italic,300italic,400italic,700italic,900italic&subset=latin,latin-ext);
+
+body,html,p,a,span{
+  padding: 0;
+  margin: 0;  
+  -webkit-font-smoothing: antialiased;  
+  color: #fff;
+  text-decoration: none;
+  font-family: 'Lato', serif; 
+  font-weight: 300;
+}
+.grid {
+  width: 100%;
+  height: 100%;
+  position: absolute;    
+  a{
+    padding: 0;
+    margin: 0;
+    position: relative;
+    width: percentage(1/5);
+    height: percentage(1/3);    
+    float: left;    
+    overflow: hidden;
+    background: $main-color;
+    &:-webkit-any-link{
+      text-decoration: none;
+    }     
+    span{
+      position: absolute;
+      bottom: .6em;
+      left: 50%;  
+      @include translateX(-50%);
+      @include transition (all .5s .1s ease);
+      font-size: 1.5em;
+      color: #fff;
+    }
+    i{
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      @include transform (translateX(-50%) translateY(-50%));
+      @include transition (all .5s .1s ease);
+      font-size: 6.8em;
+    }    
+    .info{
+      color: #fff;
+      text-decoration: none;  
+      position: absolute;
+      width: 85%;
+      top: 50%;
+      left: 50%;
+      @include transform (translateX(-50%) translateY(-50%));
+      li{
+        list-style-type: circle;
+        @include translateX(150%);
+        @include transition(all .5s ease);
+        padding: .2em 0;
+      }      
+    }
+    .css-logo{
+        background-image: url(http://i.imgur.com/2Sacl3P.png);        
+        background-size: 100%;
+        background-repeat: no-repeat;        
+        width: $icon-size;
+        height: $icon-size;
+      }
+    .jq-logo{
+        background-image: url(http://i.imgur.com/H1CXucS.png);
+        background-size: 100%;
+        background-repeat: no-repeat;           
+        width: $icon-size*2;
+        height: $icon-size*2;
+      }
+    .js-logo{
+        background-image: url(http://i.imgur.com/LMnGxpE.png);
+        background-size: 100%;
+        background-repeat: no-repeat;       
+        width: $icon-size;
+        height: $icon-size;
+      }
+    .php-logo{
+       background-image: url(http://i.imgur.com/QmJasqB.png);
+        background-size: 100%;
+        background-repeat: no-repeat;        
+        width: $icon-size*1.5;
+        height: $icon-size*1.5;
+      }
+    .wordpress-logo{
+        background-image: url(http://i.imgur.com/g6DjpC1.png);
+        background-size: 100%;
+        background-repeat: no-repeat;        
+        height: $icon-size;
+        width: $icon-size;        
+      }    
+  }
+}
+// MEDIA QUERIES //
+@media (min-width: 1024px){
+  .grid{
+    a{
+      &:nth-child(odd){
+        background-color: lighten($main-color, 3%);
+      } 
+    }
+  }
+}
+@media (max-width: 1024px){
+  .grid{
+    a{ width: percentage(1/4);      
+      i{
+        font-size: 5.8em;
+      }
+      .css-logo, .js-logo, .wordpress-logo{
+        width: $icon-size/1.4;
+        height: $icon-size/1.4;
+      }
+      .jq-logo{
+        width:$icon-size*1.3;
+        height:$icon-size*1.3;
+      }
+      .php-logo{
+        width:$icon-size;
+        height:$icon-size;
+      }
+      span{
+        font-size: 1.25em;
+      }
+      .info{
+        li{
+          font-size: 80%;
+        }
+      }
+    }
+  }
+}
+@media (min-width: 751px) and (max-width: 1024px){
+  .grid{
+    a{
+      &:nth-child(odd){
+        background-color: $main-color;
+      }  
+      &:nth-child(1){
+        background-color: lighten($main-color, 3%);
+      }
+      &:nth-child(3){
+        background-color: lighten($main-color, 3%);
+      }
+      &:nth-child(6){
+        background-color: lighten($main-color, 3%);
+      }
+      &:nth-child(8){
+        background-color: lighten($main-color, 3%);
+      }
+      &:nth-child(9){
+        background-color: lighten($main-color, 3%);
+      }
+      &:nth-child(11){
+        background-color: lighten($main-color, 3%);
+      }
+      &:nth-child(14){
+        background-color: lighten($main-color, 3%);
+      }
+    }
+  }
+}
+@media (min-width: 551px) and (max-width: 750px){
+  .grid{
+    a{
+      width: percentage(1/3);
+      &:nth-child(odd){
+        background-color: lighten($main-color, 3%);
+      } 
+    }
+  }
+}
+@media (max-height: 620px){
+  .grid{
+    a{
+      i{
+        font-size: 4em;
+      }
+      .css-logo, .js-logo, .wordpress-logo{
+        width: $icon-size/1.7;
+        height: $icon-size/1.7;
+      }
+      .php-logo{
+        width: $icon-size/1.2;
+        height: $icon-size/1.2;
+      }
+      .jq-logo{
+        width:$icon-size*1.15;
+        height:$icon-size*1.15;
+      }
+    }
+  }
+}
+
+@media (min-width: 321px) and (max-width: 550px){
+  .grid{
+    a{
+      width: percentage(1/2);
+      &:nth-child(1){
+        background-color: lighten($main-color, 3%);
+      } 
+      &:nth-child(4){
+        background-color: lighten($main-color, 3%);
+      } 
+      &:nth-child(5){
+        background-color: lighten($main-color, 3%);
+      } 
+      &:nth-child(8){
+        background-color: lighten($main-color, 3%);
+      } 
+      &:nth-child(9){
+        background-color: lighten($main-color, 3%);
+      } 
+      &:nth-child(12){
+        background-color: lighten($main-color, 3%);
+      } 
+      &:nth-child(13){
+        background-color: lighten($main-color, 3%);
+      }
+    }
+  }
+}
+
+@media (max-width: 320px){
+  .grid{
+    a{
+      width: percentage(1/1);
+      &:nth-child(2n+1){
+        background-color: lighten($main-color, 3%);
+      }
+    }
+  }
+}
+
+// HOVER EFFECTS //
+
+.grid{
+  a{
+    @include transition (all .5s ease);
+    &:hover{      
+      z-index: 15;      
+      background: $secondary-color;     
+    }
+  }
+}
+
+.grid a:hover .info li{
+  @include translateX(0%);
+}
+.grid a:hover span{
+  @include translateX(-500%);
+}
+.grid a:hover i{
+  @include transform (translateX(-450%) translateY(-50%));
+}

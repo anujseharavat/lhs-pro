@@ -15,7 +15,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'firstName', 'lastName', 'country', 'email', 'password',
+        'first_name', 'last_name', 'country', 'email', 'password',
     ];
 
     /**
@@ -28,5 +28,12 @@ class User extends Authenticatable
     ];
     public function orders(){
         return $this->hasMany('App\Order');
+    }
+
+    public function userSemesterMaps(){
+        return $this->hasMany('App\UserSemesterMap');
+    }
+    public function userSubjectMaps(){
+        return $this->hasMany('App\UserSubjectMap');
     }
 }

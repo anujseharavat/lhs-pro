@@ -190,7 +190,7 @@
                         <li>
                             @if (Auth::check())
                                 <a href="javascript:;" data-toggle="modal" class="c-btn-border-opacity-04 c-btn btn-no-focus c-btn-header btn btn-sm c-btn-border-1x c-btn-dark c-btn-circle c-btn-uppercase c-btn-sbold">
-                                    <i class="icon-user"></i> {{ Auth::user()->lastName }}, {{ Auth::user()->firstName }}</a>
+                                    <i class="icon-user"></i> {{ Auth::user()->last_name }}, {{ Auth::user()->first_name }}</a>
                                 <ul class="dropdown-menu c-menu-type-classic c-pull-left">
                                     <li class="dropdown-submenu">
                                         <a href="/user/logout/{{Auth::user()->id}}">logout

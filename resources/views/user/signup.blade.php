@@ -20,7 +20,7 @@
 <!-- END: LAYOUT/BREADCRUMBS/BREADCRUMBS-2 -->
     <div class="row">
         <div class="col-sm-6 col-md-4 col-md-offset-4 col-sm-offset-3">
-            @include('user.partial.signup-modal')
+            @include('user.partial.signup-input')
         </div>
     </div>
 @endsection

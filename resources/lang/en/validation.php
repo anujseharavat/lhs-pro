@@ -115,5 +115,5 @@ return [
     */
 
     'attributes' => [],
-
+    'current_password' => "The :attribute is invalid.",
 ];

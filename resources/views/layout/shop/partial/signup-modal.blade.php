@@ -13,11 +13,11 @@
                 <form method="post" action="/register">
                     {{ csrf_field() }}
                     <div class="form-group">
-                        <label for="firstName" class="hide">First Name</label>
-                        <input type="text" class="form-control input-lg c-square" id="firstName" name="firstName" placeholder="First Name" value="a"> </div>
+                        <label for="first_name" class="hide">First Name</label>
+                        <input type="text" class="form-control input-lg c-square" id="first_name" name="first_name" placeholder="First Name" value="a"> </div>
                     <div class="form-group">
-                        <label for="lastName" class="hide">Last Name</label>
-                        <input type="text" class="form-control input-lg c-square" id="lastName" name="lastName" placeholder="Last Name" value="a"> </div>
+                        <label for="last_name" class="hide">Last Name</label>
+                        <input type="text" class="form-control input-lg c-square" id="last_name" name="last_name" placeholder="Last Name" value="a"> </div>
                     <div class="form-group">
                         <label for="signup-country" class="hide">Country</label>
                         <select class="form-control input-lg c-square" id="country" name="country">

@@ -14,10 +14,11 @@
 @include('layout.home.partial.forgot-password')
 <!-- END: CONTENT/USER/FORGET-PASSWORD-FORM -->
 <!-- BEGIN: CONTENT/USER/SIGNUP-FORM -->
-@include('layout.home.partial.signup')
+@include('user.partial.signin-modal')
 <!-- END: CONTENT/USER/SIGNUP-FORM -->
 <!-- BEGIN: CONTENT/USER/LOGIN-FORM -->
-@include('layout.home.partial.signin')
+@include('user.partial.signup-modal')
+
 <!-- END: CONTENT/USER/LOGIN-FORM -->
 <!-- BEGIN: LAYOUT/SIDEBARS/QUICK-SIDEBAR -->
 
