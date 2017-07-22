@@ -95,18 +95,37 @@ class UserController extends Controller
 //            ->select('subjects.*', 'users.first_name')
 //            ->get();
 //        dd($items);
-        $sems = auth()->user()->userSemesterMaps()->get();
-        $activeSem = \App\UserSemesterMap::activeSemester()->first();
+        $user = auth()->user();
 
-        //$subs = auth()->user()->userSubjectMaps()->get();
-        $subs = \App\Subject::where('semester_id','=', $activeSem->semester_id)->get();
+        $sems = $user->userSemesterMaps()->get();
+        $activeSem = $user->userActiveSemester();
 
-        $activeSub = \App\UserSubjectMap::activeSubject()->first();
+        //$subs = $user->userSubjectMaps()->get();
+        $subs = \App\Subject::where('semester_id','=', $activeSem->first()->semester->id)->get();
+        //dd($subs);
+//        $subs = collect($subs)->filter(function($item){
+//            return $item->subject_id < 2;
+//        });
+        $activeSub = $user->userActiveSubject();
+        //dd($activeSub->subject_id);
 
+//        $lessons = $user->userLessonMaps()->get();
+        $lessons = \App\Lesson::where('subject_id','=', $activeSub->first()->subject->id)->get();
+        //dd($lessons->get());
+        $activeLesson = $user->userActiveLesson();
 
+//        $tests = $user->userTestMaps()->get();
+        $tests = \App\Test::where('lesson_id','=', $activeLesson->first()->Lesson->id);
+        $activeTest = $user->userActiveTest();
 
         return view('room.semester-room',
-            ['sems' => $sems, 'subs' => $subs,
-            'activeSub'=> $activeSub, 'activeSem' => $activeSem]);
+            ['sems' => $sems, 'activeSem' => $activeSem,
+                'subs' => $subs, 'activeSub' => $activeSub,
+                'lessons' => $lessons, 'activeLesson' => $activeLesson,
+                'test' => $tests, 'activeTest' => $activeTest
+            ]);
+    }
+    public function getUserLessonRoom(){
+        return view('room.lesson');
     }
 }

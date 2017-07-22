@@ -67,6 +67,7 @@ Route::prefix('user')->group(function () {
         //end room
         Route::get('order-history', 'UserController@getUserOrderHistory');
         Route::get('semester-room', 'UserController@getUserSemesterRoom');
+        Route::get('lesson', 'UserController@getUserLessonRoom');
     });
 });
 

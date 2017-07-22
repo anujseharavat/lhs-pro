@@ -33,7 +33,28 @@ class User extends Authenticatable
     public function userSemesterMaps(){
         return $this->hasMany('App\UserSemesterMap');
     }
+    public function userActiveSemester(){
+        return $this->userSemesterMaps()->where('status','=', 'started')->get();
+    }
+
     public function userSubjectMaps(){
         return $this->hasMany('App\UserSubjectMap');
+    }
+    public function userActiveSubject(){
+        return $this->userSubjectMaps()->where('status','=', 'started')->get()->first();
+    }
+
+    public function userLessonMaps(){
+        return $this->hasMany('App\UserLessonMap');
+    }
+    public function userActiveLesson(){
+        return $this->userLessonMaps()->where('status','=', 'started')->get()->first();
+    }
+
+    public function userTestMaps(){
+        return $this->hasMany('App\UserTestMap');
+    }
+    public function userActiveTest(){
+        return $this->userTestMaps()->where('status','=', 'started')->get()->first();
     }
 }

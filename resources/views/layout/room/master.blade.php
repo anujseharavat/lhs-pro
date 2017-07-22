@@ -29,14 +29,15 @@
 <!-- content push wrapper -->
     <div class="st-pusher" id="content">
         <!-- this is the wrapper for the content -->
-        <div class="st-content">
+        <div class="st-content-fluid">
             @yield('content')
         </div>
         <!-- /st-content -->
     </div>
-    <!-- /st-pusher -->
-    @include('layout.room.footer')
-</div>
+
+<!-- /st-pusher -->
+@include('layout.room.footer')
+
 <!-- /st-container -->
 
 <!-- Inline Script for colors and config objects; used by various external scripts; -->
