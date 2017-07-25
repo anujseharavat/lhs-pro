@@ -10,7 +10,10 @@ class UserSubjectMap extends Model
         return $this->belongsTo('App\Subject');
     }
     public function isActive($id){
-        return $this->find($id)->status == 'Started';
+        return $this->find($id)->status == '1';
+    }
+    public function statusName(){
+        return $this->hasOne('App\Status', 'id', 'status');
     }
 //    public static function activeSubject(){
 //        return static::where('status','=', 'Started')->get()->first();

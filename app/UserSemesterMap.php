@@ -13,7 +13,7 @@ class UserSemesterMap extends Model
         return $this->belongsTo('App\Semester');
     }
     public function isActive(){
-        return $this->status == 'Started';
+        return $this->status == '1';
     }
 //    public static function activeSemester(){
 //        return static::where('status','=', 'Started')->get()->first();

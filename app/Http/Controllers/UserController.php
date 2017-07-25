@@ -4,24 +4,29 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+
 class UserController extends Controller
 {
     public function getUserDashboard()
     {
         return view('user.dashboard');
     }
+
     public function getUserIndex()
     {
         return view('room.index');
     }
+
     public function getUserProfile()
     {
         return view('room.profile');
     }
+
     public function getResetPassword()
     {
         return view('room.password-reset');
     }
+
     public function postResetPassword()
     {
         //dump(dcrypt(auth()->user()->getAuthPassword()));
@@ -48,29 +53,32 @@ class UserController extends Controller
         //return redirect()->route('user/password-reset');
         return back();
     }
+
     public function getUserOrderHistory()
     {
 //        $columns = \DB::getSchemaBuilder()->getColumnListing('Product');
 //        $columns = array_diff($columns, array('id', 'created_at', 'updated_at'));
         $orders = \Auth::user()->orders;
-        $orders->transform(function($order, $key){
+        $orders->transform(function ($order, $key) {
             $order->cart = unserialize($order->cart);
             return $order;
         });
         return view('user.order-history', ['orders' => $orders]);
     }
+
     public function getUserOrderHistoryRoom()
     {
 //        $columns = \DB::getSchemaBuilder()->getColumnListing('Product');
 //        $columns = array_diff($columns, array('id', 'created_at', 'updated_at'));
         $orders = \Auth::user()->orders;
-        $orders->transform(function($order, $key){
+        $orders->transform(function ($order, $key) {
             $order->cart = unserialize($order->cart);
             return $order;
         });
         //dd($orders[0]->cart);
         return view('room.order-history-room', ['orders' => $orders]);
     }
+
     public function postUserProfile()
     {
         $this->validate(request(), [
@@ -87,7 +95,9 @@ class UserController extends Controller
         request()->session()->flash('success', 'You profile changed successfully!');
         return back();
     }
-    public function getUserSemesterRoom(){
+
+    public function getUserSemesterRoom()
+    {
 
 //        $items = \DB::table('users')
 //            ->join('user_subject_maps', 'users.id', '=', 'user_subject_maps.user_id')
@@ -95,29 +105,52 @@ class UserController extends Controller
 //            ->select('subjects.*', 'users.first_name')
 //            ->get();
 //        dd($items);
+        $sems = null; $activeSem=null;
+        $subs =null; $ActiveSub =null;
+        $lessons=null; $activeLesson=null;
+        $contents=null; $activeContent=null;
+        $tests=null; $activeTest = null;
+
         $user = auth()->user();
-
         $sems = $user->userSemesterMaps()->get();
-        $activeSem = $user->userActiveSemester();
-
-        //$subs = $user->userSubjectMaps()->get();
-        $subs = \App\Subject::where('semester_id','=', $activeSem->first()->semester->id)->get();
-        //dd($subs);
-//        $subs = collect($subs)->filter(function($item){
-//            return $item->subject_id < 2;
-//        });
-        $activeSub = $user->userActiveSubject();
-        //dd($activeSub->subject_id);
-
-//        $lessons = $user->userLessonMaps()->get();
-        $lessons = \App\Lesson::where('subject_id','=', $activeSub->first()->subject->id)->get();
-        //dd($lessons->get());
-        $activeLesson = $user->userActiveLesson();
-
-//        $tests = $user->userTestMaps()->get();
-        $tests = \App\Test::where('lesson_id','=', $activeLesson->first()->Lesson->id);
-        $activeTest = $user->userActiveTest();
-
+        if ($sems) {
+            $activeSem = $user->activeSemester();
+            //dd($activeSem);
+            if ($activeSem) {
+                //$subs = $user->userSubjectMaps()->get();
+                $subs = \App\Subject::where('semester_id', '=', $activeSem->first()->semester->id)->get();
+                if ($subs) {
+                    $activeSub = $user->activeSubject();
+                    if ($activeSub) {
+                        //dd($activeSub->statusName->Name);
+                        $lessons = \App\Lesson::where('subject_id', '=', $activeSub->first()->subject->id)->get();
+                        if ($lessons) {
+                            $activeLesson = $user->activeLesson();//dd($activeLesson);
+                            if ($activeLesson) {
+                                $contents = \App\Content::where('lesson_id', '=', $activeLesson->first()->lesson->id)->get();
+//                                dd($contents);
+                                $activeContent = $user->activeContent();
+//                                dd($activeContent->statusName->Name);
+                                $contentTypes = \App\ContentType::all();
+//                                dd($contentType);
+                                $tests = \App\Test::where('lesson_id', '=', $activeLesson->first()->Lesson->id);
+                                if ($tests) {
+                                    $activeTest = $user->activeTest();
+                                    return view('room.semester-room',
+                                        ['sems' => $sems, 'activeSem' => $activeSem,
+                                            'subs' => $subs, 'activeSub' => $activeSub,
+                                            'lessons' => $lessons, 'activeLesson' => $activeLesson,
+                                            'tests' => $tests, 'activeTest' => $activeTest,
+                                            'contents' => $contents, 'activeContent' => $activeContent,
+                                            'contentTypes' => $contentTypes
+                                        ]);
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
         return view('room.semester-room',
             ['sems' => $sems, 'activeSem' => $activeSem,
                 'subs' => $subs, 'activeSub' => $activeSub,
@@ -125,7 +158,10 @@ class UserController extends Controller
                 'test' => $tests, 'activeTest' => $activeTest
             ]);
     }
-    public function getUserLessonRoom(){
+
+    public
+    function getUserLessonRoom()
+    {
         return view('room.lesson');
     }
 }

@@ -18,4 +18,7 @@ class Subject extends Model
     public function exams(){
         return $this->hasMany('App\Exam');
     }
+    public function isActive($activeSub){
+        return $activeSub && ($this->id == $activeSub->subject_id);
+    }
 }

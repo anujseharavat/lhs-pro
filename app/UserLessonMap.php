@@ -10,6 +10,6 @@ class UserLessonMap extends Model
         return $this->belongsTo('App\Lesson');
     }
     public function isActive(){
-        return $this->status == 'Started';
+        return $this->status == '1';
     }
 }

@@ -28,7 +28,7 @@ class SubjectTableSeeder extends Seeder
         $seed->save();
         $seed = new \App\Subject([
             'semester_id'=> 2,
-            'name' => 'Physics',
+            'name' => 'Semester-2 Physics',
         ]);
         $seed->save();
         $seed = new \App\Subject([
