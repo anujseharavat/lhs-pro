@@ -117,36 +117,45 @@ class UserController extends Controller
             $activeSem = $user->activeSemester();
             //dd($activeSem);
             if ($activeSem) {
-                //$subs = $user->userSubjectMaps()->get();
-                $subs = \App\Subject::where('semester_id', '=', $activeSem->first()->semester->id)->get();
+                $subs = $user->userSubjectMaps()->get();
+//                dump($subs->first()->subject->semester_id);
+//                dd($activeSem->semester_id);
+                //$subs = \App\Subject::where('semester_id', '=', $activeSem->first()->semester->id)->get();
                 if ($subs) {
                     $activeSub = $user->activeSubject();
                     if ($activeSub) {
                         //dd($activeSub->statusName->Name);
-                        $lessons = \App\Lesson::where('subject_id', '=', $activeSub->first()->subject->id)->get();
-                        if ($lessons) {
-                            $activeLesson = $user->activeLesson();//dd($activeLesson);
-                            if ($activeLesson) {
-                                $contents = \App\Content::where('lesson_id', '=', $activeLesson->first()->lesson->id)->get();
-//                                dd($contents);
-                                $activeContent = $user->activeContent();
-//                                dd($activeContent->statusName->Name);
-                                $contentTypes = \App\ContentType::all();
-//                                dd($contentType);
-                                $tests = \App\Test::where('lesson_id', '=', $activeLesson->first()->Lesson->id);
-                                if ($tests) {
-                                    $activeTest = $user->activeTest();
-                                    return view('room.semester-room',
-                                        ['sems' => $sems, 'activeSem' => $activeSem,
-                                            'subs' => $subs, 'activeSub' => $activeSub,
-                                            'lessons' => $lessons, 'activeLesson' => $activeLesson,
-                                            'tests' => $tests, 'activeTest' => $activeTest,
-                                            'contents' => $contents, 'activeContent' => $activeContent,
-                                            'contentTypes' => $contentTypes
-                                        ]);
-                                }
-                            }
-                        }
+//                        $lessons = \App\Lesson::where('subject_id', '=', $activeSub->first()->subject->id)->get();
+                        $lessons = $user->userLessonMaps()->get();
+                        //dd($lessons->first()->lesson);
+                        return view('room.semester-room',
+                            ['sems' => $sems, 'activeSem' => $activeSem,
+                                'subs' => $subs, //'activeSub' => $activeSub,
+                                'lessons' => $lessons
+                            ]);
+//                        if ($lessons) {
+//                            $activeLesson = $user->activeLesson();//dd($activeLesson);
+//                            if ($activeLesson) {
+//                                $contents = \App\Content::where('lesson_id', '=', $activeLesson->first()->lesson->id)->get();
+////                                dd($contents);
+//                                $activeContent = $user->activeContent();
+////                                dd($activeContent->statusName->Name);
+//                                $contentTypes = \App\ContentType::all();
+////                                dd($contentType);
+//                                $tests = \App\Test::where('lesson_id', '=', $activeLesson->first()->Lesson->id);
+//                                if ($tests) {
+//                                    $activeTest = $user->activeTest();
+//                                    return view('room.semester-room',
+//                                        ['sems' => $sems, 'activeSem' => $activeSem,
+//                                            'subs' => $subs, 'activeSub' => $activeSub,
+//                                            'lessons' => $lessons, 'activeLesson' => $activeLesson,
+//                                            'tests' => $tests, 'activeTest' => $activeTest,
+//                                            'contents' => $contents, 'activeContent' => $activeContent,
+//                                            'contentTypes' => $contentTypes
+//                                        ]);
+//                                }
+//                            }
+//                        }
                     }
                 }
             }
@@ -159,9 +168,29 @@ class UserController extends Controller
             ]);
     }
 
-    public
-    function getUserLessonRoom()
+    public function getUserLesson($id)
     {
-        return view('room.lesson');
+        $lesson = \App\Lesson::find($id);
+//        dump($lesson);
+//        dump($lesson->subject);
+//        dd($lesson->subject->semester);
+        $contents = \App\Content::where('lesson_id', '=', $lesson->lesson_id)->get();
+//        dd($contents);
+        $contentTypes = \App\ContentType::all();
+        $user = auth()->user();
+        $userContents = $user->userContentMaps()->get();
+        //$tests = $userContents->where('lesson_id', '=', $activeLesson->first()->Lesson->id);
+        //dump($userContents);
+//        dd($userContents->first()->statusName->Name);
+        //dd($userContents->first()->content->contentType->name);
+        //dd($userContents->first()->content->type);
+//        dump($id);
+//        dd($userContents->first()->content->lesson_id);
+        return view('room.lesson-room',
+                    ['id' => $id,
+                        'lesson' => $lesson,
+                        'contentTypes' => $contentTypes,
+                        'userContents' => $userContents
+                    ]);
     }
 }

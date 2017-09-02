@@ -34,7 +34,7 @@ class User extends Authenticatable
         return $this->hasMany('App\UserSemesterMap');
     }
     public function activeSemester(){
-        return $this->userSemesterMaps()->where('status','=', 1)->get();
+        return $this->userSemesterMaps()->where('status','=', 1)->get()->first();
     }
 
     public function userSubjectMaps(){

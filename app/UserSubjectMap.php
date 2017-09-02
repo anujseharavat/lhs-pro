@@ -7,10 +7,10 @@ use Illuminate\Database\Eloquent\Model;
 class UserSubjectMap extends Model
 {
     public function subject(){
-        return $this->belongsTo('App\Subject');
+        return $this->hasOne('App\Subject', 'id', 'subject_id');
     }
-    public function isActive($id){
-        return $this->find($id)->status == '1';
+    public function isActive(){
+        return $this->status == '1';
     }
     public function statusName(){
         return $this->hasOne('App\Status', 'id', 'status');
