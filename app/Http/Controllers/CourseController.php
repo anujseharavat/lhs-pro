@@ -17,6 +17,8 @@ class CourseController extends Controller
 
     public function index()
     {
+        //$user = auth()->user();
+        //dd($user->orders);
         $courses = Course::all();
         $columns = \DB::getSchemaBuilder()->getColumnListing('courses');
         //array_shift($columns);

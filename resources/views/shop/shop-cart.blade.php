@@ -54,7 +54,7 @@
                             </div>
                             <div class="col-md-4 col-sm-9 col-xs-7 c-cart-desc">
                                 <h3>
-                                    <a href="shop-product-details-2.html"
+                                    <a href="/shop/subject-select"
                                        class="c-font-bold c-theme-link c-font-22 c-font-dark">{{ $course['item']->name }}</a>
                                 </h3>
                                 <p>{{ $course['item']->description }}</p>

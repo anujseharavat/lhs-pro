@@ -24,12 +24,18 @@
 
 Route::get('/', 'CourseController@index')->name('home');
 Route::prefix('shop')->group(function () {
-    Route::get('add-to-cart/{id}', 'ShopController@getAddToCart')->name('product.addToCart');
+    Route::post('add-to-cart', 'ShopController@getAddToCart')->name('add_to_cart');
     Route::get('shop-cart', 'ShopController@getCart')->name('product.shopCart');
     Route::get('checkout', 'ShopController@getCheckout')->name('checkout')->middleware('auth');
     Route::post('checkout', 'ShopController@postCheckout')->name('checkout')->middleware('auth');
     Route::get('remove-from-cart/{id}', 'ShopController@getRemoveFromCart')->name('cart.remove');
+    Route::get('subject-select', 'ShopController@getSubjectSelect')->name('SubjectSelect');
+    Route::post('subject-select', 'ShopController@postSubjectSelect')->name('SubjectSelect');
 });
+//Route::post('orderdata', function (){
+//    dd('test');
+//})->name('orderdata');
+
 Route::get('/test', 'ShopController@test')->name('test');
 Route::get('/course', 'ShopController@course')->name('course');
 
@@ -69,7 +75,7 @@ Route::prefix('user')->group(function () {
         Route::get('semester-room', 'UserController@getUserSemesterRoom');
         Route::get('lesson2', 'UserController@getUserLessonRoom');
         Route::get('lesson-room/{id}', 'UserController@getUserLesson');
-
+        Route::get('content-room/{id}', 'UserController@getUserContent');
     });
 });
 

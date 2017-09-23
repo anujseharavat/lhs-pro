@@ -20,13 +20,13 @@
                                     <h4 class="text-headline ">{{ $contentType->name }}</h4>
                                     <p>Content description here</p>
                                 </div>
-                                <div class="media-right">
-                                    <a class="btn btn-primary" data-toggle="collapse"
-                                       href="#collapseExample{{1}}" aria-expanded="false"
-                                       aria-controls="collapseExample">
-                                        {{ 'text' }}
-                                    </a>
-                                </div>
+                                {{--<div class="media-right">--}}
+                                    {{--<a class="btn btn-primary" data-toggle="collapse"--}}
+                                       {{--href="#collapseExample{{1}}" aria-expanded="false"--}}
+                                       {{--aria-controls="collapseExample">--}}
+                                        {{--{{ $userContents->first()->statusName->Name }}--}}
+                                    {{--</a>--}}
+                                {{--</div>--}}
                             </div>
                             {{--Start content in content Type--}}
                             <div class="list-group collapse" id="contentType-{{$contentType->id}}">
@@ -38,15 +38,15 @@
                                             </div>
                                             <div class="media-body">
                                                 <i class="fa fa-fw fa-circle {{ $userContent->isActive() ? 'text-amber-300' : 'text-grey-300' }} "></i>
-                                                {{--<a href="{{ URL::to('/user/lesson-room/'.$userContent->content_id) }}">{{ $userContent->content->path}}</a>--}}
-                                                <div class="flowplayer" data-swf="flowplayer.swf" data-ratio="0.4167">
-                                                    <video>
+                                                <a href="{{ URL::to('/user/content-room/'.$userContent->content_id) }}">{{ $userContent->content->path}}</a>
+                                                {{--<div class="flowplayer" data-swf="flowplayer.swf" data-ratio="0.4167">--}}
+                                                    {{--<video>--}}
                                                         {{--<source type="video/webm"--}}
                                                                 {{--src="https://edge.flowplayer.org/bauhaus.webm">--}}
-                                                        <source type="video/mp4"
-                                                                src="https://edge.flowplayer.org/bauhaus.mp4">
-                                                    </video>
-                                                </div>
+                                                        {{--<source type="video/mp4"--}}
+                                                                {{--src="https://edge.flowplayer.org/bauhaus.mp4">--}}
+                                                    {{--</video>--}}
+                                                {{--</div>--}}
                                             </div>
                                             <div class="media-right">
                                                 <div class="width-100 text-right text-caption">2:03 min

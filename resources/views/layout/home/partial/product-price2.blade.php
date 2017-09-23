@@ -15,6 +15,8 @@
         <div class="panel panel-default">
             <div class="panel-heading">
                 <strong>Product List</strong>
+                <div class="alert alert-success" style="display:none;" id="add_to_cart_msg"></div>
+                {{--<div class="" >this is success message</div>--}}
             </div>
             <div class="panel-body">
                 <div class="table-responsive">
@@ -53,12 +55,23 @@
                                             <div class="col-md-2"><strong>Duration</strong></div>
                                             <div class="col-md-10">{{ $course['duration'] }}</div>
                                         </div>
+                                        {{--<div class="row">--}}
+                                            {{--<div class="col-md-9">--}}
+                                                {{--<select class="ddlClass" id="ddlClass_{{$course['id']}}" style="width: 100%" multiple="multiple">--}}
+                                                    {{--<option selected value="Accord">Physics</option>--}}
+                                                    {{--<option selected value="Duster">Chemistry</option>--}}
+                                                    {{--<option value="Esteem">Maths</option>--}}
+                                                    {{--<option value="Fiero">Enligsh</option>--}}
+                                                    {{--<option value="Lancer">French</option>--}}
+                                                    {{--<option value="Phantom">German</option>--}}
+                                                {{--</select>--}}
+                                            {{--</div>--}}
+                                        {{--</div>--}}
                                     </div>
                                 </td>
                                 <td>${{$course['price']}}</td>
-                                <td><a href="{{ route('product.addToCart', ['id'=> $course['id']]) }}"
-                                       class="btn btn-md c-btn-square c-btn-green c-btn-uppercase c-btn-bold">Add to
-                                        Cart</a></td>
+                                <td>
+                                    <input type="button" onclick="callAddToCart(this)" data-course-name="{{$course['name']}}" data-course-id="{{$course['id']}}" class="btn btn-md c-btn-square c-btn-green c-btn-uppercase c-btn-bold" value="Add to Cart">
                             </tr>
                         </tbody>
                         @endforeach
@@ -74,3 +87,35 @@
         </div>
     </div>
 </div>
+<script type="text/javascript">
+    function callAddToCart(self){
+        var course_id = $(self).data('course-id');
+        var course_name = $(self).data('course-name');
+        var selected_items = $('#ddlClass_'+course_id).val();
+
+//        if(!selected_items || selected_items.length < 2){
+//            alert('Please select atleast 2 subjects');
+//            return false;
+//        }
+        $.ajax({
+            type: "POST",
+            url: "{{route('add_to_cart')}}", // This is what I have updated
+            data: { '_token': "{{csrf_token()}}", 'course_id' : course_id, selected_items : selected_items }
+        }).success(function( total_cart_items ) {
+            $('#add_to_cart_msg').show().html(course_name+' has been added to your cart.');
+            $('.cart_icon').show();
+            $('.cart_icon_count').html(total_cart_items);
+        });
+    }
+</script>
+{{--<script type="javascript">--}}
+    {{--$(document).ready(function() {--}}
+        {{--alert('anuj');--}}
+        {{--$('#ddlCars').multiselect();--}}
+    {{--});--}}
+{{--</script>--}}
+<!-- Include the plugin's CSS and JS: -->
+{{--<script type="text/javascript" src="js/bootstrap-multiselect.js"></script>--}}
+{{--<link rel="stylesheet" href="css/bootstrap-multiselect.css" type="text/css"/>--}}
+
+

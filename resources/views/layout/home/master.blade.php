@@ -59,6 +59,8 @@
 <script src="/assets/base/js/components.js" type="text/javascript"></script>
 <script src="/assets/base/js/components-shop.js" type="text/javascript"></script>
 <script src="/assets/base/js/app.js" type="text/javascript"></script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.min.css" rel="stylesheet" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js"></script>
 <script>
     $(document).ready(function()
     {
@@ -82,6 +84,12 @@
     @endif
 $(document).ready(function()
     {
+        $('.ddlClass').select2({
+            placeholder: "Select a Subject",
+            allowClear: true,
+            minimumSelectionLength:2,
+            maximumSelectionLength:2
+        });
         var slider = $('.c-layout-revo-slider .tp-banner');
         var cont = $('.c-layout-revo-slider .tp-banner-container');
         var api = slider.show().revolution(

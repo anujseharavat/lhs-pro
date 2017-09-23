@@ -16,7 +16,7 @@
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="main-nav">
             <ul class="nav navbar-nav navbar-nav-bordered navbar-left">
-                <a href="#" class="dropdown-toggle user" data-toggle="dropdown">
+                <a href="/" class="c-link dropdown-toggle">
                     <img src="/assets/base/img/layout/logos/logo-1.png" alt="Bill" class="img-circle" />
                 </a>
             </ul>

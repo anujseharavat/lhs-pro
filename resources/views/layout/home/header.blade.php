@@ -120,15 +120,22 @@
 
                         <!-- END: MOBILE VERSION OF THE TAB MEGA MENU -->
                     </li>
-                    @if (Session::has('cart'))
-                        <li class="c-search-toggler-wrapper">
+                    @php
+                        $class = "display:none";
+                        $count = 0;
+                        if(Session::has('cart')){
+                          $class = 'display:block';
+                          $count = Session::get('cart')->totalQty;
+                        }
+                    @endphp
+
+                        <li style="{{$class}}" class="c-search-toggler-wrapper cart_icon">
                             <a href="/shop/shop-cart" class="c-link dropdown-toggle">
                                 <i class="fa fa-shopping-cart" area-hidden="true"></i>
-                                <span class="badge"> {{ Session::has('cart') ? Session::get('cart')->totalQty : '' }} </span>
+                                <span class="badge cart_icon_count"> {{ $count }} </span>
                             </a>
                         </li>
-                    @endif
-                    <li>
+                        <li>
                         @if (Auth::check())
                             <a href="javascript:;" class="c-link dropdown-toggle">
                                 <i class="icon-user"></i> {{ Auth::user()->last_name }}, {{ Auth::user()->first_name }}

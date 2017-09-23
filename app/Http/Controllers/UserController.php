@@ -193,4 +193,13 @@ class UserController extends Controller
                         'userContents' => $userContents
                     ]);
     }
+    public function getUserContent($id)
+    {
+        $content = \App\Content::find($id);
+
+        return view('room.content-room',
+            [
+                'content' => $content
+            ]);
+    }
 }

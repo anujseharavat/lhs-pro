@@ -13,6 +13,14 @@ class CreateUserMapsTable extends Migration
      */
     public function up()
     {
+        Schema::create('user_course_maps', function (Blueprint $table) {
+            $table->integer('user_id');
+            $table->integer('course_id');
+            $table->tinyInteger('status')->default('0');
+            $table->string('comment')->default('');
+            $table->timestamps();
+            $table->unique(['user_id', 'course_id', 'status']);
+        });
         Schema::create('user_semester_maps', function (Blueprint $table) {
             $table->integer('user_id');
             $table->integer('semester_id');
