@@ -14,10 +14,11 @@ class CreateStatusesTable extends Migration
     public function up()
     {
         Schema::create('statuses', function (Blueprint $table) {
-            $table->increments('id');
-            $table->string('Name');
+            $table->tinyInteger('id');
+            $table->string('name');
             $table->timestamps();
         });
+//        DB::update("ALTER TABLE statuses AUTO_INCREMENT = 0;");
     }
 
     /**

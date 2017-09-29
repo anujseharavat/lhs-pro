@@ -34,34 +34,34 @@ class User extends Authenticatable
         return $this->hasMany('App\UserSemesterMap');
     }
     public function activeSemester(){
-        return $this->userSemesterMaps()->where('status','=', 1)->get()->first();
+        return $this->userSemesterMaps()->where('status','!=', 0)->get()->first();
     }
 
     public function userSubjectMaps(){
         return $this->hasMany('App\UserSubjectMap');
     }
     public function activeSubject(){
-        return $this->userSubjectMaps()->where('status','=', 1)->get()->first();
+        return $this->userSubjectMaps()->where('status','!=', 0)->get()->first();
     }
 
     public function userLessonMaps(){
         return $this->hasMany('App\UserLessonMap');
     }
     public function activeLesson(){
-        return $this->userLessonMaps()->where('status','=', 1)->get()->first();
+        return $this->userLessonMaps()->where('status','!=', 0)->get()->first();
     }
 
     public function userTestMaps(){
         return $this->hasMany('App\UserTestMap');
     }
     public function activeTest(){
-        return $this->userTestMaps()->where('status','=', 1)->get()->first();
+        return $this->userTestMaps()->where('status','!=', 0)->get()->first();
     }
 
     public function userContentMaps(){
-        return $this->hasMany('App\UserContentMap');
+        return $this->hasMany('App\UserContentMap')->get();
     }
     public function activeContent(){
-        return $this->userContentMaps()->where('status','=', 1)->get()->first();
+        return $this->userContentMaps()->where('status','!=', 0)->get()->first();
     }
 }

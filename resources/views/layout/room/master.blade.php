@@ -29,7 +29,7 @@
 <!-- content push wrapper -->
     <div class="st-pusher" id="content">
         <!-- this is the wrapper for the content -->
-        <div class="st-content-fluid">
+        <div class="st-content">
             @yield('content')
         </div>
         <!-- /st-content -->

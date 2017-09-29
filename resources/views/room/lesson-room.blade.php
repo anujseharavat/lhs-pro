@@ -2,71 +2,42 @@
 @section('content')
     <div class="st-content-inner padding-none">
         <div class="container-fluid">
-            <div class="page-section third" style="border:1px solid lightgrey;">
+            <div class="page-section third">
                 <div class="panel panel-default curriculum paper-shadow" data-z="0.5">
                     <div class="row">
-                        <div class="col-md-4"><h5 class="text-subhead-2 text-light">{{ $lesson->name }}</h5></div>
+                        <div class="col-md-4"><h5 class="text-subhead-2 text-light"> {{ $lesson->desc  }} : {{ $lesson->name  }} </h5></div>
+                        <div class="pull-right"><div class="col-md-4"><a  href="{{ route('semester-room')}}" class="btn btn-info">Back</a></div></div>
                     </div>
-                    @foreach($contentTypes as $contentType)
-                        <div class="panel-heading panel-heading-gray"
-                             data-toggle="collapse"
-                             data-target="#contentType-{{$contentType->id}}" aria-expanded="false">
-                            <div class="media bg-amber-400">
+                    @foreach($userContents as $userContent)
+                        @if ($userContent->content->lesson_id == $lesson->id )
+                            <div class="list-group-item media" data-target="#">
                                 <div class="media-left">
-                                            <span class="icon-block img-circle bg-indigo-300 half text-white"><i
-                                                        class="fa fa-graduation-cap"></i></span>
+                                    <div class="text-crt">L.{{ $userContent->content_id }}</div>
                                 </div>
                                 <div class="media-body">
-                                    <h4 class="text-headline ">{{ $contentType->name }}</h4>
-                                    <p>Content description here</p>
-                                </div>
-                                {{--<div class="media-right">--}}
-                                    {{--<a class="btn btn-primary" data-toggle="collapse"--}}
-                                       {{--href="#collapseExample{{1}}" aria-expanded="false"--}}
-                                       {{--aria-controls="collapseExample">--}}
-                                        {{--{{ $userContents->first()->statusName->Name }}--}}
-                                    {{--</a>--}}
-                                {{--</div>--}}
-                            </div>
-                            {{--Start content in content Type--}}
-                            <div class="list-group collapse" id="contentType-{{$contentType->id}}">
-                                @foreach($userContents as $userContent)
-                                    @if ($userContent->content->lesson_id == $id && $userContent->content->type == $contentType->id )
-                                        <div class="list-group-item media" data-target="#">
-                                            <div class="media-left">
-                                                <div class="text-crt">L.{{ $userContent->content_id }}</div>
-                                            </div>
-                                            <div class="media-body">
-                                                <i class="fa fa-fw fa-circle {{ $userContent->isActive() ? 'text-amber-300' : 'text-grey-300' }} "></i>
-                                                <a href="{{ URL::to('/user/content-room/'.$userContent->content_id) }}">{{ $userContent->content->path}}</a>
-                                                {{--<div class="flowplayer" data-swf="flowplayer.swf" data-ratio="0.4167">--}}
-                                                    {{--<video>--}}
-                                                        {{--<source type="video/webm"--}}
-                                                                {{--src="https://edge.flowplayer.org/bauhaus.webm">--}}
-                                                        {{--<source type="video/mp4"--}}
-                                                                {{--src="https://edge.flowplayer.org/bauhaus.mp4">--}}
-                                                    {{--</video>--}}
-                                                {{--</div>--}}
-                                            </div>
-                                            <div class="media-right">
-                                                <div class="width-100 text-right text-caption">2:03 min
-                                                    lesson
-                                                </div>
-                                            </div>
-                                        </div>
+                                    @if ($userContent->status == 0)
+                                        <i class="fa fa-fw fa-circle text-grey-300"></i>
+                                    @elseif($userContent->status == 1)
+                                        <i class="fa fa-fw fa-circle text-amber-300"></i>
+                                    @elseif($userContent->status == 2)
+                                        <i class="fa fa-fw fa-circle text-green-300"></i>
                                     @endif
-                                @endforeach
+                                    <a href="{{ URL::to('/user/content-room/'.$userContent->content_id) }}">{{ $userContent->content->path}}</a>
+                                </div>
+                                <div class="media-right">
+                                    {{--<div class="width-100 text-right text-caption">{{ $userContent->content->details}}--}}
+                                        {{--2:03 min lesson--}}
+                                    {{--</div>--}}
+                                    <a  href="{{ route('user-content-status2', ['content_id'=> $userContent->content_id]) }}" class="btn btn-primary">Done</a>
+                                </div>
                             </div>
-                            {{--End content in content Type--}}
-                        </div>
+                        @endif
                     @endforeach
                 </div>
             </div>
         </div>
     </div>
 @endsection
-
-
 
 <link rel="stylesheet" href="/user/skin/skin.css">
 <!-- site specific styling -->

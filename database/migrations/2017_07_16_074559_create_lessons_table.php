@@ -17,6 +17,7 @@ class CreateLessonsTable extends Migration
             $table->increments('id');
             $table->integer('subject_id')->references('id')->on('subjects');
             $table->string('name');
+            $table->tinyInteger('content_type')->references('id')->on('content_types');
             $table->string('desc');
             $table->timestamps();
         });

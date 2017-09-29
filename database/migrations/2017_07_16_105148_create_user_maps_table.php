@@ -13,21 +13,21 @@ class CreateUserMapsTable extends Migration
      */
     public function up()
     {
-        Schema::create('user_course_maps', function (Blueprint $table) {
-            $table->integer('user_id');
-            $table->integer('course_id');
-            $table->tinyInteger('status')->default('0');
-            $table->string('comment')->default('');
-            $table->timestamps();
-            $table->unique(['user_id', 'course_id', 'status']);
-        });
+//        Schema::create('user_course_maps', function (Blueprint $table) {
+//            $table->integer('user_id');
+//            $table->integer('course_id');
+//            $table->tinyInteger('status')->default('0');
+//            $table->string('comment')->default('');
+//            $table->timestamps();
+//            $table->unique(['user_id', 'course_id', 'status']);
+//        });
         Schema::create('user_semester_maps', function (Blueprint $table) {
             $table->integer('user_id');
             $table->integer('semester_id');
             $table->tinyInteger('status')->default('0');
             $table->string('comment')->default('');
             $table->timestamps();
-            $table->unique(['user_id', 'semester_id']);
+            $table->primary(['user_id', 'semester_id']);
         });
         Schema::create('user_subject_maps', function (Blueprint $table) {
             $table->integer('user_id');
@@ -35,7 +35,7 @@ class CreateUserMapsTable extends Migration
             $table->tinyInteger('status')->default('0');
             $table->string('comment')->default('');
             $table->timestamps();
-            $table->unique(['user_id', 'subject_id']);
+            $table->primary(['user_id', 'subject_id']);
         });
         Schema::create('user_lesson_maps', function (Blueprint $table) {
             $table->integer('user_id');
@@ -43,7 +43,7 @@ class CreateUserMapsTable extends Migration
             $table->tinyInteger('status')->default('0');
             $table->string('comment')->default('');
             $table->timestamps();
-            $table->unique(['user_id', 'lesson_id']);
+            $table->primary(['user_id', 'lesson_id']);
         });
         Schema::create('user_test_maps', function (Blueprint $table) {
             $table->integer('user_id');
@@ -51,7 +51,7 @@ class CreateUserMapsTable extends Migration
             $table->tinyInteger('status')->default('0');
             $table->string('comment')->default('');
             $table->timestamps();
-            $table->unique(['user_id', 'test_id']);
+            $table->primary(['user_id', 'test_id']);
         });
         Schema::create('user_exam_maps', function (Blueprint $table) {
             $table->integer('user_id');
@@ -59,14 +59,14 @@ class CreateUserMapsTable extends Migration
             $table->tinyInteger('status')->default('0');
             $table->string('comment')->default('');
             $table->timestamps();
-            $table->unique(['user_id', 'exam_id']);
+            $table->primary(['user_id', 'exam_id']);
         });
         Schema::create('user_content_maps', function (Blueprint $table) {
             $table->integer('user_id');
             $table->integer('content_id');
             $table->tinyInteger('status')->references('id')->on('Statuses')->default('0');
             $table->timestamps();
-            $table->unique(['user_id', 'content_id']);
+            $table->primary(['user_id', 'content_id']);
 
         });
     }

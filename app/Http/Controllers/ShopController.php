@@ -23,6 +23,7 @@ class ShopController extends Controller
 
     public function getAddToCart(Request $request)
     {
+        //dd($request['aj']);
         $course = App\Course::find($request['course_id']);
 
         $oldCart = Session::has('cart') ? Session::get('cart') : null;
@@ -82,8 +83,6 @@ class ShopController extends Controller
             //dd($request->input('name'));
             $order->payment_id = rad2deg(10);
             $order->payment_status = "successful";
-
-
             //Save Order
             \Auth::user()->orders()->save($order);
 
@@ -99,11 +98,13 @@ class ShopController extends Controller
                 $orderDetail->qty = $item['qty'];
                 //Save OrderDetails
                 $order->orderDetail()->save($orderDetail);
-
-
+                //dd();
                 //dump('End Semesters---------');
                 //dd(auth()->user()->UserSemesterMap);
             }
+            $order->order_details_id = $orderDetail->id;
+            //Save Order
+            \Auth::user()->orders()->save($order);
             //dd('End Cart Items');
         } catch
         (\Exception $e) {
@@ -113,43 +114,7 @@ class ShopController extends Controller
         Session::put('shop-success', 'You successfully purchased the course(s)');
         return redirect()->route('home')->with('shop-success', 'You successfully purchased the course(s)');
     }
-    public function courseActivate($courseId){
-        $semesters = App\Course::find($courseId)->semesters;
-        //dd($semesters);
-        foreach ($semesters as $semester) {
-            \DB::table('user_semester_maps')->insert([
-                ['user_id' => auth()->user()->id,
-                    'semester_id' => $semester->id],
-            ]);
 
-            $subjects = App\Subject::where('semester_id', '=', $semester->id)->get();
-            //dd($subjects);
-            foreach ($subjects as $subject) {
-
-                \DB::table('user_subject_maps')->insert([
-                    ['user_id' => auth()->user()->id,
-                        'subject_id' => $subject->id]
-                ]);
-
-                $lessons = App\Lesson::where('subject_id', '=', $subject->id)->get();
-                foreach ($lessons as $lesson) {
-                    \DB::table('user_lesson_maps')->insert([
-                        ['user_id' => auth()->user()->id,
-                            'lesson_id' => $lesson->id],
-                    ]);
-
-                    $tests = App\Test::where('lesson_id', '=', $lesson->id)->get();
-                    foreach ($tests as $test) {
-                        \DB::table('user_test_maps')->insert([
-                            ['user_id' => auth()->user()->id,
-                                'test_id' => $test->id],
-                        ]);
-                    }
-                }
-            }
-            //dump('End Subjects---------');
-        }
-    }
     public function getRemoveFromCart($id)
     {
         //Session::forget('cart');

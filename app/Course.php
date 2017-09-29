@@ -13,4 +13,7 @@ class Course extends Model
     public function semesters(){
         return $this->hasMany('App\Semester');
     }
+//    public function orderDetails(){
+//        return $this->belongsTo('App\OrderDetails', 'course_id', 'id');
+//    }
 }

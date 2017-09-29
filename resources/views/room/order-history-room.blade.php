@@ -24,18 +24,20 @@
                                             <tr>
                                                 <th>Product Id</th>
                                                 <th>Description</th>
-                                                <th>Qty</th>
-                                                <th>Unit Price</th>
-                                                <th>Total</th>
+                                                {{--<th>Qty</th>--}}
+                                                {{--<th>Unit Price</th>--}}
+                                                <th>Price</th>
+                                                <th>Payment Status</th>
+                                                <th>Activate</th>
                                                 {{--<th>Status</th>--}}
                                             </tr>
                                             </thead>
-                                            @foreach($order->cart->items as $item)
+                                            @foreach($order->orderDetail as $item)
                                                 <tbody>
                                                 <tr>
                                                     <td>
                                                         <a class="btn btn-primary" data-toggle="collapse" href="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
-                                                            {{ $item['item']['id'] }}
+                                                            {{ $item['id'] }}
                                                         </a>
                                                         <div class="collapse" id="collapseExample">
                                                             <div class="">
@@ -44,13 +46,15 @@
                                                         </div>
                                                     </td>
                                                     <td>
-                                                        <a href="javascript:;" data-toggle="modal" data-target="#signin-form"
+                                                        <a href="{{route('course-activate')}}" data-toggle="modal"
                                                            class="c-btn-border-opacity-04 c-btn btn-no-focus c-btn-header btn btn-sm c-btn-border-1x c-btn-white c-btn-circle c-btn-uppercase c-btn-sbold">
-                                                            <i class="icon-user"></i>{{ $item['item']['name'] }}</a>
+                                                            <i class="icon-user"></i>{{ $item->course->name }}</a>
                                                     </td>
-                                                    <td>{{ $item['qty'] }}</td>
-                                                    <td>{{ $item['item']['price'] }}</td>
+                                                    {{--<td>{{ $item['qty'] }}</td>--}}
+{{--                                                    <td>{{ $item['price'] }}</td>--}}
                                                     <td>{{ $item['price'] }}</td>
+                                                    <td>{{ $order['payment_status'] }}</td>
+                                                    <td><button id="btnorderdetail{{$item['id']}}" type="button" onclick="courseActivate(this)" data-course-id="{{$item['course_id']}}"  data-order-detail-id="{{$item['id']}}" class="btn btn-primary {{ ($order['payment_status'] == 'successful') && $item['status'] == 0 ? 'active':'disabled' }} "> {{ $item['status'] == 0 ? 'Activate' : 'Activated'  }}</button></td>
                                                 </tr>
                                                 </tbody>
                                             @endforeach
@@ -71,3 +75,19 @@
     </div>
 @endsection
 @include('user.partial.signin-modal')
+<script type="text/javascript">
+    function courseActivate(self){
+        var course_id = $(self).data('course-id');
+        var order_detail_id = $(self).data('order-detail-id');
+        $.ajax({
+            type: "POST",
+            url: "{{route('course-activate')}}", // This is what I have updated
+            data: { '_token': "{{csrf_token()}}", 'course_id' : course_id, 'order_detail_id': order_detail_id}
+        }).success(function( status ) {
+            if (status)
+                alert('Course successfully activated !');
+
+            $('#btnorderdetail'+order_detail_id).show().html('Activated').prop('disabled', true);
+        });
+    }
+</script>

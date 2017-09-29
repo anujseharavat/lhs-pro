@@ -13,48 +13,131 @@ class SubjectTableSeeder extends Seeder
     {
         $seed = new \App\Subject([
             'semester_id'=> 1,
-            'name' => 'Semester-1 Physics',
+            'name' => 'Physics',
         ]);
         $seed->save();
         $seed = new \App\Subject([
             'semester_id'=> 1,
-            'name' => 'Semester-1 Chemistry',
+            'name' => 'Chemistry',
         ]);
         $seed->save();
         $seed = new \App\Subject([
             'semester_id'=> 1,
-            'name' => 'Semester-1 Maths',
+            'name' => 'Biology',
+        ]);
+        $seed->save();
+        $seed = new \App\Subject([
+            'semester_id'=> 1,
+            'name' => 'Maths',
+        ]);
+        $seed->save();
+        $seed->save();
+        $seed = new \App\Subject([
+            'semester_id'=> 1,
+            'name' => 'AddMaths',
+        ]);
+        $seed->save();
+        $seed = new \App\Subject([
+            'semester_id'=> 1,
+            'name' => 'English',
+        ]);
+        $seed->save();
+        $seed = new \App\Subject([
+            'semester_id'=> 1,
+            'name' => 'ICT',
+        ]);
+        $seed->save();
+        $seed = new \App\Subject([
+            'semester_id'=> 1,
+            'name' => 'Economics',
+        ]);
+        $seed->save();
+        //Semester-2----------------------
+        $seed = new \App\Subject([
+            'semester_id'=> 2,
+            'name' => 'Physics',
         ]);
         $seed->save();
         $seed = new \App\Subject([
             'semester_id'=> 2,
-            'name' => 'Semester-2 Physics',
+            'name' => 'Chemistry',
         ]);
         $seed->save();
         $seed = new \App\Subject([
             'semester_id'=> 2,
-            'name' => 'Semester-2 Chemistry',
+            'name' => 'Biology',
         ]);
         $seed->save();
         $seed = new \App\Subject([
             'semester_id'=> 2,
-            'name' => 'Semester-2 Maths',
+            'name' => 'Maths',
+        ]);
+        $seed->save();
+        $seed->save();
+        $seed = new \App\Subject([
+            'semester_id'=> 2,
+            'name' => 'AddMaths',
         ]);
         $seed->save();
         $seed = new \App\Subject([
-            'semester_id'=> 3,
-            'name' => 'Semester-3 Physics',
+            'semester_id'=> 2,
+            'name' => 'English',
         ]);
         $seed->save();
         $seed = new \App\Subject([
-            'semester_id'=> 3,
-            'name' => 'Semester-3 Chemistry',
+            'semester_id'=> 2,
+            'name' => 'ICT',
         ]);
         $seed->save();
         $seed = new \App\Subject([
-            'semester_id'=> 3,
-            'name' => 'Semester-3 Maths',
+            'semester_id'=> 2,
+            'name' => 'Economics',
         ]);
         $seed->save();
+//        $seed = new \App\Subject([
+//            'semester_id'=> 1,
+//            'name' => 'Semester-1 Physics',
+//        ]);
+//        $seed->save();
+//        $seed = new \App\Subject([
+//            'semester_id'=> 1,
+//            'name' => 'Semester-1 Chemistry',
+//        ]);
+//        $seed->save();
+//        $seed = new \App\Subject([
+//            'semester_id'=> 1,
+//            'name' => 'Semester-1 Maths',
+//        ]);
+//        $seed->save();
+//        $seed = new \App\Subject([
+//            'semester_id'=> 2,
+//            'name' => 'Semester-2 Physics',
+//        ]);
+//        $seed->save();
+//        $seed = new \App\Subject([
+//            'semester_id'=> 2,
+//            'name' => 'Semester-2 Chemistry',
+//        ]);
+//        $seed->save();
+//        $seed = new \App\Subject([
+//            'semester_id'=> 2,
+//            'name' => 'Semester-2 Maths',
+//        ]);
+//        $seed->save();
+//        $seed = new \App\Subject([
+//            'semester_id'=> 3,
+//            'name' => 'Semester-3 Physics',
+//        ]);
+//        $seed->save();
+//        $seed = new \App\Subject([
+//            'semester_id'=> 3,
+//            'name' => 'Semester-3 Chemistry',
+//        ]);
+//        $seed->save();
+//        $seed = new \App\Subject([
+//            'semester_id'=> 3,
+//            'name' => 'Semester-3 Maths',
+//        ]);
+//        $seed->save();
     }
 }

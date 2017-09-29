@@ -19,7 +19,7 @@
 //    $columns = array_diff($columns, array('id', 'created_at', 'updated_at'));
 //    //dd($products);
 //    //dd($columns->first());
-//    return view('index', compact('products', 'columns'));
+//    return view('index', compact('products', 'columns'));SubjectSelect
 //})->name('home');
 
 Route::get('/', 'CourseController@index')->name('home');
@@ -65,17 +65,20 @@ Route::prefix('user')->group(function () {
         Route::get('index', 'UserController@getUserIndex');
         Route::get('profile', 'UserController@getUserProfile');
         Route::post('profile', 'UserController@postUserProfile');
-        Route::get('order-history-room', 'UserController@getUserOrderHistoryRoom');
+        Route::get('order-history-room', 'UserController@getUserOrderHistoryRoom')->name('order-history');
+        Route::post('course-activate', 'UserController@courseActivate')->name('course-activate');
 
         Route::get('purchase-history', 'UserController@getPurchaseHistory');
         Route::get('reset-password', 'UserController@getResetPassword');
         Route::post('reset-password', 'UserController@postResetPassword');
         //end room
         Route::get('order-history', 'UserController@getUserOrderHistory');
-        Route::get('semester-room', 'UserController@getUserSemesterRoom');
+        Route::get('semester-room', 'UserController@getUserSemesterRoom')->name('semester-room');
         Route::get('lesson2', 'UserController@getUserLessonRoom');
-        Route::get('lesson-room/{id}', 'UserController@getUserLesson');
+        Route::get('lesson-room/{id}', 'UserController@getUserLesson')->name('lesson-room');
         Route::get('content-room/{id}', 'UserController@getUserContent');
+        Route::post('content-room', 'UserController@postUserContentStatus')->name('user-content-status');
+        Route::get('content-room2', 'UserController@postUserContentStatus2')->name('user-content-status2');
     });
 });
 

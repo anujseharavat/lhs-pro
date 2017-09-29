@@ -21,10 +21,10 @@ class SemesterTableSeeder extends Seeder
             'name' => 'Sem-2',
         ]);
         $seed->save();
-        $seed = new \App\Semester([
-            'course_id'=> 1,
-            'name' => 'Sem-3',
-        ]);
-        $seed->save();
+//        $seed = new \App\Semester([
+//            'course_id'=> 1,
+//            'name' => 'Sem-3',
+//        ]);
+//        $seed->save();
     }
 }

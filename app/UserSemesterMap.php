@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class UserSemesterMap extends Model
 {
+    public $timestamps = true;
 //    public function user(){
 //        return $this->belongsTo('App\User');
 //    }
@@ -13,7 +14,7 @@ class UserSemesterMap extends Model
         return $this->belongsTo('App\Semester');
     }
     public function isActive(){
-        return $this->status == '1';
+        return $this->status != '0';
     }
 //    public static function activeSemester(){
 //        return static::where('status','=', 'Started')->get()->first();

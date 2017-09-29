@@ -12,14 +12,17 @@ class StatusSeeder extends Seeder
     public function run()
     {
         $seed = new \App\Status([
+            'id' => 0,
             'name' => 'Locked',
         ]);
         $seed->save();
         $seed = new \App\Status([
-            'name' => 'Start',
+            'id' => 1,
+            'name' => 'In Progress',
         ]);
         $seed->save();
         $seed = new \App\Status([
+            'id' => 2,
             'name' => 'Completed',
         ]);
         $seed->save();

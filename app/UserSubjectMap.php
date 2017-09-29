@@ -6,11 +6,12 @@ use Illuminate\Database\Eloquent\Model;
 
 class UserSubjectMap extends Model
 {
+    public $timestamps = true;
     public function subject(){
         return $this->hasOne('App\Subject', 'id', 'subject_id');
     }
     public function isActive(){
-        return $this->status == '1';
+        return $this->status != '0';
     }
     public function statusName(){
         return $this->hasOne('App\Status', 'id', 'status');

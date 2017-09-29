@@ -71,7 +71,7 @@
                                 </td>
                                 <td>${{$course['price']}}</td>
                                 <td>
-                                    <input type="button" onclick="callAddToCart(this)" data-course-name="{{$course['name']}}" data-course-id="{{$course['id']}}" class="btn btn-md c-btn-square c-btn-green c-btn-uppercase c-btn-bold" value="Add to Cart">
+                                    <input type="button" onclick="callAddToCart(this)" data-course-name="{{$course['name']}}" data-course-id="{{$course['id']}}" class="btn {{ (1<2)?'c-btn-green':'c-btn-yellow' }} btn-md c-btn-square  c-btn-uppercase c-btn-bold" value="Add to Cart">
                             </tr>
                         </tbody>
                         @endforeach
@@ -91,7 +91,7 @@
     function callAddToCart(self){
         var course_id = $(self).data('course-id');
         var course_name = $(self).data('course-name');
-        var selected_items = $('#ddlClass_'+course_id).val();
+//        var aj = $(self).data('test-name');
 
 //        if(!selected_items || selected_items.length < 2){
 //            alert('Please select atleast 2 subjects');
@@ -100,7 +100,7 @@
         $.ajax({
             type: "POST",
             url: "{{route('add_to_cart')}}", // This is what I have updated
-            data: { '_token': "{{csrf_token()}}", 'course_id' : course_id, selected_items : selected_items }
+            data: { '_token': "{{csrf_token()}}", 'course_id' : course_id}
         }).success(function( total_cart_items ) {
             $('#add_to_cart_msg').show().html(course_name+' has been added to your cart.');
             $('.cart_icon').show();

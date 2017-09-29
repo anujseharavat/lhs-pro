@@ -12,6 +12,9 @@ class Lesson extends Model
     public function contents(){
         return $this->hasMany('App\Content');
     }
+    public function contentType(){
+        return $this->hasOne('App\ContentType', 'id', 'content_type');
+    }
     public function tests(){
         return $this->hasMany('App\Test');
     }
@@ -21,4 +24,7 @@ class Lesson extends Model
     public function isActive($activeLesson){
         return $activeLesson && ($this->id == $activeLesson->lesson_id);
     }
+//    public function getMax($id){
+//
+//    }
 }
