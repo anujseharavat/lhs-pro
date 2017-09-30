@@ -7,7 +7,7 @@
                 <div class="tabbable paper-shadow relative" data-z="0.5">
                     <ul class="nav nav-tabs" tabindex="0" style="overflow: hidden; outline: none;">
                         @foreach($sems as $sem)
-                            <li class=" {{ $sem->isActive() ? 'active' : ''}}"><a
+                            <li class=" {{ $sem->semester_id == $id ? 'active' : ''}}"><a
                                         href="{{ route('semester-room', ['id' => $sem->semester_id]) }}"><i class="fa fa-fw fa-lock"></i> <span
                                             class="hidden-sm hidden-xs">{{$sem->semester->name}}</span></a></li>
                         @endforeach
@@ -20,7 +20,7 @@
                         @if($activeSem)
                             @foreach($subs as $sub)
                                 {{--Subject List--}}
-                                @if ($sub->subject->semester_id == $activeSem->semester_id)
+                                {{--@if ($sub->subject->semester_id == $activeSem->semester_id)--}}
                                     <div class="panel panel-default curriculum paper-shadow" data-z="0.5">
                                         <div class="panel-heading panel-heading-gray"
                                              data-toggle="{{ $sub->isActive() ? 'collapse' : '' }}"
@@ -70,7 +70,7 @@
                                         @endif
                                         {{--endd lesson--}}
                                     </div>
-                                @endif
+                                {{--@endif--}}
                             @endforeach
                         @endif
                     </div>

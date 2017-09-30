@@ -6,7 +6,7 @@
                 <div class="panel panel-default curriculum paper-shadow" data-z="0.5">
                     <div class="row">
                         <div class="col-md-4"><h5 class="text-subhead-2 text-light"> {{ $lesson->desc  }} : {{ $lesson->name  }} </h5></div>
-                        <div class="pull-right"><div class="col-md-4"><a  href="{{ route('semester-room')}}" class="btn btn-info">Back</a></div></div>
+                        <div class="pull-right"><div class="col-md-4"><a  href="{{ route('semester-room',["id" => $lesson->subject->semester_id])}}" class="btn btn-info">Back</a></div></div>
                     </div>
                     @foreach($userContents as $userContent)
                         @if ($userContent->content->lesson_id == $lesson->id )

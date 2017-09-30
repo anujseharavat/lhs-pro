@@ -2,7 +2,7 @@
     <div data-scrollable>
         <h4 class="category">Category</h4>
         <ul class="sidebar-block list-group list-group-menu list-group-minimal">
-            <li class="list-group-item active"><a href="{{ URL::to('/user/semester-room') }}"><span class="badge pull-right"></span>Student Room</a></li>
+            <li class="list-group-item active"><a href="{{ URL::to('/user/semester-room/1') }}"><span class="badge pull-right"></span>Student Room</a></li>
             {{--<li class="list-group-item"><a href="#"><span class="badge pull-right"></span>E-Libarary</a></li>--}}
             {{--<li class="list-group-item"><a href="#"><span class="badge pull-right"></span>Forum</a></li>--}}
             {{--<li class="list-group-item"><a href="#"><span class="badge pull-right"></span>Happenings</a></li>--}}

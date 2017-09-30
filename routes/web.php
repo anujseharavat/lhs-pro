@@ -73,7 +73,7 @@ Route::prefix('user')->group(function () {
         Route::post('reset-password', 'UserController@postResetPassword');
         //end room
         Route::get('order-history', 'UserController@getUserOrderHistory');
-        Route::get('semester-room', 'UserController@getUserSemesterRoom')->name('semester-room');
+        Route::get('semester-room/{id}', 'UserController@getUserSemesterRoom')->name('semester-room');
         Route::get('lesson2', 'UserController@getUserLessonRoom');
         Route::get('lesson-room/{id}', 'UserController@getUserLesson')->name('lesson-room');
         Route::get('content-room/{id}', 'UserController@getUserContent');
