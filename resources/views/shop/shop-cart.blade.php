@@ -122,42 +122,6 @@
         </div>
     </div>
     <!-- END: CONTENT/SHOPS/SHOP-CART-1 -->
-    <!-- BEGIN: CONTENT/SHOPS/SHOP-2-2 -->
-
-    <!-- END: CONTENT/SHOPS/SHOP-2-2 -->
-    <!-- BEGIN: CONTENT/STEPS/STEPS-3 -->
-    <div class="c-content-box c-size-md c-theme-bg">
-        <div class="container">
-            <div class="c-content-step-3 c-font-white">
-                <div class="row">
-                    <div class="col-md-4 c-steps-3-block">
-                        <i class="fa fa-truck"></i>
-                        <div class="c-steps-3-title">
-                            <h2 class="c-font-white c-font-uppercase c-font-30 c-font-thin">Get Your Licence</h2>
-                            <em>activate with your licence key</em>
-                        </div>
-                        <span>&nbsp;</span>
-                    </div>
-                    <div class="col-md-4 c-steps-3-block">
-                        <i class="fa fa-gift"></i>
-                        <div class="c-steps-3-title">
-                            <h2 class="c-font-white c-font-uppercase c-font-30 c-font-thin">Scholorships</h2>
-                            <em>Amazing opprtunities for Internationl Studies</em>
-                        </div>
-                        <span>&nbsp;</span>
-                    </div>
-                    <div class="col-md-4 c-steps-3-block">
-                        <i class="fa fa-phone"></i>
-                        <div class="c-steps-3-title">
-                            <h2 class="c-font-white c-font-uppercase c-font-30 c-font-thin">477 505 8877</h2>
-                            <em>24/7 customer care available</em>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- END: CONTENT/STEPS/STEPS-3 -->
     <!-- END: PAGE CONTENT -->
 
 @endsection

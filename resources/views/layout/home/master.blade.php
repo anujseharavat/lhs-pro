@@ -24,10 +24,10 @@
 
 <!-- END: LAYOUT/SIDEBARS/QUICK-SIDEBAR -->
 <!-- BEGIN: PAGE CONTAINER -->
-@include('layout.home.partial.container');
+@include('layout.home.partial.container')
 <!-- END: PAGE CONTAINER -->
 <!-- BEGIN: LAYOUT/FOOTERS/FOOTER-6 -->
-@include('layout.home.footer');
+@include('layout.home.footer')
 <!-- END: LAYOUT/FOOTERS/GO2TOP -->
 <!-- BEGIN: LAYOUT/BASE/BOTTOM -->
 <!-- BEGIN: CORE PLUGINS -->
@@ -155,14 +155,6 @@ $(document).ready(function()
 </script>
 <!-- END: PAGE SCRIPTS -->
 <!-- END: LAYOUT/BASE/BOTTOM -->
-<script>
-    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-    })(window,document,'script','home/js/analytics.js','ga');
-    ga('create', 'UA-64667612-1', 'themehats.com');
-    ga('send', 'pageview');
-</script>
 </body>
 
 
