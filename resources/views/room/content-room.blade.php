@@ -7,10 +7,9 @@
             <div class="panel panel-default  curriculum paper-shadow" data-z="0.5">
                 <div class="row" style="background-color:lightgrey; ">
 
-                    <div class="col-md-4 pull left"><h5 class="text-subhead-2 text-light">
+                    <div class="col-md-4"><h5 class="text-subhead-2 text-light">
                             Lesson- {{ $content->content->lesson->name}}</h5></div>
-                    <div class="col-md-4 pull"><h5 class="text-subhead-2 text-light">
-                            Lesson- {{ $content->content->lesson->name}}</h5></div>
+                    {{--<div class="pull-right"><div class="col-md-4"><a  href="{{ route('lesson-room',["id" => $content->content->lesson_id])}}" class="btn btn-info">Back</a></div></div>--}}
                 </div>
 
                 <div class="flowplayer center-block" data-swf="flowplayer.swf" data-ratio="0.4167">
@@ -28,10 +27,11 @@
                        href="#collapseExample{{1}}" onclick="updateContentStatus(this)" data-content-id="{{$content->content_id}}">
                         {{$content->status == 1 ? 'Complete' : $content->statusName->name}}
                     </a>
+                    <a  href="{{ route('lesson-room',["id" => $content->content->lesson_id])}}" class="btn btn-info">Back</a>
                     {{--<a  class="btn btn-primary active" id="btnCompelete2"> test</a>--}}
                     {{--{{ URL::to('/user/lesson-room/'.$lesson->lesson_id) }}"--}}
 {{--                    <a  href="{{ route('lesson-room', ['id'=> $content->content->lesson->id]) }}" class="btn btn-primary">back</a>--}}
-                    <a  href="{{ route('user-content-status2', ['content_id'=> $content->content_id]) }}" class="btn btn-primary">test</a>
+                    {{--<a  href="{{ route('user-content-status2', ['content_id'=> $content->content_id]) }}" class="btn btn-primary">test</a>--}}
                 </div>
             </div>
         @else

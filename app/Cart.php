@@ -15,6 +15,20 @@ class Cart{
 //            $this->orderDate = $oldCart->orderDate;
         }
     }
+    public function get($id){
+        $item = null;
+        if(array_key_exists($id, $this->items)){
+            $item = $this->items[$id];
+        }
+        return $item;
+    }
+    public function find($id){
+        $status = false;
+        if(array_key_exists($id, $this->items)){
+            $status = true;
+        }
+        return $status;
+    }
     public function add($item, $id){
         $storedItem = ['qty' => 0, 'price' => $item->price, 'item' => $item ];
         if ($this->items){

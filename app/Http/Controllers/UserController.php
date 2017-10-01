@@ -208,8 +208,7 @@ class UserController extends Controller
                         return view('room.semester-room',
                             ['sems' => $sems, 'activeSem' => $activeSem,
                                 'subs' => $subs, 'id' => $id,
-                                'lessons' => $lessons
-                            ]);
+``                            ]);
                     }
                 }
             }

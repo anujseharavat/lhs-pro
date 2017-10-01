@@ -22,13 +22,19 @@
                                     @elseif($userContent->status == 2)
                                         <i class="fa fa-fw fa-circle text-green-300"></i>
                                     @endif
-                                    <a href="{{ URL::to('/user/content-room/'.$userContent->content_id) }}">{{ $userContent->content->path}}</a>
+
+                                        @if ($userContent->status == 0)
+                                            <span>{{ $userContent->content->details}}</span>
+                                        @else
+                                            <a href="{{ URL::to('/user/content-room/'.$userContent->content_id) }}">{{ $userContent->content->details}}</a>
+                                        @endif
+
                                 </div>
                                 <div class="media-right">
                                     {{--<div class="width-100 text-right text-caption">{{ $userContent->content->details}}--}}
                                         {{--2:03 min lesson--}}
                                     {{--</div>--}}
-                                    <a  href="{{ route('user-content-status2', ['content_id'=> $userContent->content_id]) }}" class="btn btn-primary">Done</a>
+                                    {{--<a  href="{{ route('user-content-status2', ['content_id'=> $userContent->content_id]) }}" class="btn btn-primary">Done</a>--}}
                                 </div>
                             </div>
                         @endif

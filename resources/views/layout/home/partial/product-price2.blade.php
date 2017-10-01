@@ -30,9 +30,9 @@
                         </tr>
                         </thead>
                         <tbody>
-                        <?php $index=0; ?>
+                        <?php $index = 0; ?>
                         @foreach($courses as $course)
-                            <?php $index +=1; ?>
+                            <?php $index += 1; ?>
                             <tr>
                                 <td>{{$course['id']}}</td>
                                 <td>
@@ -56,22 +56,55 @@
                                             <div class="col-md-10">{{ $course['duration'] }}</div>
                                         </div>
                                         {{--<div class="row">--}}
-                                            {{--<div class="col-md-9">--}}
-                                                {{--<select class="ddlClass" id="ddlClass_{{$course['id']}}" style="width: 100%" multiple="multiple">--}}
-                                                    {{--<option selected value="Accord">Physics</option>--}}
-                                                    {{--<option selected value="Duster">Chemistry</option>--}}
-                                                    {{--<option value="Esteem">Maths</option>--}}
-                                                    {{--<option value="Fiero">Enligsh</option>--}}
-                                                    {{--<option value="Lancer">French</option>--}}
-                                                    {{--<option value="Phantom">German</option>--}}
-                                                {{--</select>--}}
-                                            {{--</div>--}}
+                                        {{--<div class="col-md-9">--}}
+                                        {{--<select class="ddlClass" id="ddlClass_{{$course['id']}}" style="width: 100%" multiple="multiple">--}}
+                                        {{--<option selected value="Accord">Physics</option>--}}
+                                        {{--<option selected value="Duster">Chemistry</option>--}}
+                                        {{--<option value="Esteem">Maths</option>--}}
+                                        {{--<option value="Fiero">Enligsh</option>--}}
+                                        {{--<option value="Lancer">French</option>--}}
+                                        {{--<option value="Phantom">German</option>--}}
+                                        {{--</select>--}}
+                                        {{--</div>--}}
                                         {{--</div>--}}
                                     </div>
                                 </td>
                                 <td>${{$course['price']}}</td>
                                 <td>
-                                    <input type="button" onclick="callAddToCart(this)" data-course-name="{{$course['name']}}" data-course-id="{{$course['id']}}" class="btn {{ (1<2)?'c-btn-green':'c-btn-yellow' }} btn-md c-btn-square  c-btn-uppercase c-btn-bold" value="Add to Cart">
+                                    {{--{{$userCourses->contains($course['id']) ? 'y':'n'}}--}}
+                                    @if ($userCourses->contains($course['id']))
+                                        <button id="btnaddtocart{{$course['id']}}" type="button"
+                                                data-course-name="{{$course['name']}}"
+                                                data-course-id="{{$course['id']}}"
+                                                class="btn c-btn-green disabled">Purchased
+                                        </button>
+                                    @else
+                                        <?php
+                                        $cartStatus = 0;
+                                        if (Session::has('cart')) {
+                                            $cart = Session::get('cart');
+//                                        echo $cart->find($course['id']) ? 'dsdsds' : 'asaasas';
+                                            $cartStatus = $cart->find($course['id']);
+                                        }
+                                        ?>
+
+                                        @if ($cartStatus)
+                                            <button id="btnaddtocart{{$course['id']}}" type="button"
+                                                    {{--onclick="callAddToCart(this)"--}}
+                                                    data-course-name="{{$course['name']}}"
+                                                    data-course-id="{{$course['id']}}"
+                                                    class="btn c-btn-green disabled">Added to Cart
+                                            </button>
+                                        @else
+                                            <button id="btnaddtocart{{$course['id']}}" type="button"
+                                                    onclick="callAddToCart(this)"
+                                                    data-course-name="{{$course['name']}}"
+                                                    data-course-id="{{$course['id']}}"
+                                                    class="btn c-btn-green active"> Add to Cart
+                                            </button>
+                                        @endif
+                                    @endif
+                                </td>
                             </tr>
                         </tbody>
                         @endforeach
@@ -88,7 +121,8 @@
     </div>
 </div>
 <script type="text/javascript">
-    function callAddToCart(self){
+
+    function callAddToCart(self) {
         var course_id = $(self).data('course-id');
         var course_name = $(self).data('course-name');
 //        var aj = $(self).data('test-name');
@@ -100,19 +134,20 @@
         $.ajax({
             type: "POST",
             url: "{{route('add_to_cart')}}", // This is what I have updated
-            data: { '_token': "{{csrf_token()}}", 'course_id' : course_id}
-        }).success(function( total_cart_items ) {
-            $('#add_to_cart_msg').show().html(course_name+' has been added to your cart.');
+            data: {'_token': "{{csrf_token()}}", 'course_id': course_id}
+        }).success(function (total_cart_items) {
+            $('#add_to_cart_msg').show().html(course_name + ' has been added to your cart.');
             $('.cart_icon').show();
             $('.cart_icon_count').html(total_cart_items);
+            $('#btnaddtocart' + course_id).show().html('Added to Cart').prop('disabled', true);
         });
     }
 </script>
 {{--<script type="javascript">--}}
-    {{--$(document).ready(function() {--}}
-        {{--alert('anuj');--}}
-        {{--$('#ddlCars').multiselect();--}}
-    {{--});--}}
+{{--$(document).ready(function() {--}}
+{{--alert('anuj');--}}
+{{--$('#ddlCars').multiselect();--}}
+{{--});--}}
 {{--</script>--}}
 <!-- Include the plugin's CSS and JS: -->
 {{--<script type="text/javascript" src="js/bootstrap-multiselect.js"></script>--}}
