@@ -22,7 +22,7 @@ class RegistrationController extends Controller
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @return mixed
      */
     public function store(Request $request)
     {
@@ -40,6 +40,16 @@ class RegistrationController extends Controller
 //        dump(request('country'));
 //        dump(request('email'));
 //        dd(request('password'));
+//        \App\User:where('email','=', )
+        try{
+            $data = User::where('email','=', request('email'))->first()->email;
+            if($data){
+                return 'user_exists';
+            }
+        }catch (\Exception $exception){
+
+        }
+
         $user = User::create([
             'first_name' => request('first_name'),
             'last_name' => request('last_Name'),

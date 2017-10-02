@@ -6562,6 +6562,9 @@ ul.icon-list.icon-list-block li:not(:last-of-type) {
   margin-top: 2px;
   margin-bottom: 0;
 }
+.progress-bar-not-added {
+    background-color: #ccc;
+}
 .table .progress .progress-bar {
   -webkit-transition: all 1s ease-in-out;
           transition: all 1s ease-in-out;

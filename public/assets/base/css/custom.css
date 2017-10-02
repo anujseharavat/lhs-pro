@@ -28,3 +28,11 @@
   right: 10px;
   left: auto;
 }
+
+.user-reg-error {
+    text-align: center;
+    color: #f00;
+    border-width: 1px;
+    border-style: solid;
+    margin-bottom: 5px;
+}

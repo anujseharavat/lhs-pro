@@ -43,12 +43,12 @@
     <div class="c-navbar">
         <div class="container">
             <!-- BEGIN: BRAND -->
-            {{--<div class="c-navbar-wrapper clearfix">
+            <div class="c-navbar-wrapper clearfix">
                 <div class="c-brand c-pull-left">
                     <a href="index-2.html" class="c-logo">
-                        <img src="assets/base/img/layout/logos/logo-1.png" alt="letshomestudy.com" class="c-desktop-logo">
-                        <img src="assets/base/img/layout/logos/logo-1.png" alt="letshomestudy.com" class="c-desktop-logo-inverse">
-                        <img src="assets/base/img/layout/logos/logo-1.png" alt="letshomestudy.com" class="c-mobile-logo"> </a>
+                        <img src="assets/base/img/layout/logos/logo-1.png" alt="JANGO" class="c-desktop-logo">
+                        <img src="assets/base/img/layout/logos/logo-1.png" alt="JANGO" class="c-desktop-logo-inverse">
+                        <img src="assets/base/img/layout/logos/logo-1.png" alt="JANGO" class="c-mobile-logo"> </a>
                     <button class="c-hor-nav-toggler" type="button" data-target=".c-mega-menu">
                         <span class="c-line"></span>
                         <span class="c-line"></span>
@@ -57,114 +57,63 @@
                     <button class="c-topbar-toggler" type="button">
                         <i class="fa fa-ellipsis-v"></i>
                     </button>
-                    <button class="c-cart-toggler" type="button">
+                    {{--<button class="c-cart-toggler" type="button">
                         <i class="icon-handbag"></i>
                         <span class="c-cart-number c-theme-bg">2</span>
-                    </button>
+                    </button>--}}
                 </div>
                 <!-- END: BRAND -->
-            </div>--}}
-            <!-- END: QUICK SEARCH -->
-            <!-- BEGIN: HOR NAV -->
-            <!-- BEGIN: LAYOUT/HEADERS/MEGA-MENU -->
-            <!-- BEGIN: MEGA MENU -->
-            <!-- Dropdown menu toggle on mobile: c-toggler class can be applied to the link arrow or link itself depending on toggle mode -->
-            <nav class="c-mega-menu c-pull-right c-mega-menu-dark c-mega-menu-dark-mobile c-theme c-fonts-uppercase c-fonts-bold">
-                <ul class="nav navbar-nav c-theme-nav">
-                    <li class="c-active">
-                        <a href="javascript:;" class="c-link dropdown-toggle">Home
-                            <span class="c-arrow c-toggler"></span>
-                        </a>
-
-                    </li>
-
-                    <li>
-                        <a href="javascript:;" class="c-link dropdown-toggle">Buy
-                            <span class="c-arrow c-toggler"></span>
-                        </a>
-                        <ul class="dropdown-menu c-menu-type-classic c-pull-left">
-                            <li class="dropdown-submenu">
-                                <a href="javascript:;">IGCSE
-                                    <span class="c-arrow c-toggler"></span>
-                                </a>
-
-                            </li>
-                            <li class="dropdown-submenu">
-                                <a href="javascript:;">Pre-IGCSE
-                                    <span class="c-arrow c-toggler"></span>
-                                </a>
-
-                            </li>
-                        </ul>
-
-                    </li>
-                    <li class="c-menu-type-classic">
-                        <a href="javascript:;" class="c-link dropdown-toggle">About
-                            <span class="c-arrow c-toggler"></span>
-                        </a>
-                        <ul class="dropdown-menu c-menu-type-classic c-pull-left">
-                            <li class="dropdown-submenu">
-                                <a href="javascript:;">CSR Activities
-                                    <span class="c-arrow c-toggler"></span>
-                                </a>
-
-                            </li>
-                            <li class="dropdown-submenu">
-                                <a href="#">SSAK Onlile solutions
-                                    <span class="c-arrow c-toggler"></span>
-                                </a>
-
-                            </li>
-                            <li class="dropdown-submenu">
-                                <a href="javascript:;">About LHS
-                                    <span class="c-arrow c-toggler"></span>
-                                </a>
-
-                            </li>
-                            </li>
-                        </ul>
-                    </li>
-                    <li>
-                        <a href="javascript:;" class="c-link dropdown-toggle">Blog
-                            <span class="c-arrow c-toggler"></span>
-                        </a>
-
-                    </li>
-                    <li>
-                        <a href="javascript:;" class="c-link dropdown-toggle">Contact Us
-                            <span class="c-arrow c-toggler"></span>
-                        </a>
-                        <!-- BEGIN: DESKTOP VERSION OF THE TAB MEGA MENU -->
-
-                        <!-- BEGIN: DESKTOP VERSION OF THE TAB MEGA MENU -->
-                        <!-- BEGIN: MOBILE) VERSION OF THE TAB MEGA MENU -->
-
-                        <!-- END: MOBILE VERSION OF THE TAB MEGA MENU -->
-                    </li>
-                    @php
-                        $class = "display:none";
-                        $count = 0;
-                        if(Session::has('cart')){
-                          $class = 'display:block';
-                          $count = Session::get('cart')->totalQty;
-                        }
-                    @endphp
-
+                <!-- BEGIN: QUICK SEARCH -->
+                <form class="c-quick-search" action="#">
+                    <input type="text" name="query" placeholder="Type to search..." value="" class="form-control" autocomplete="off">
+                    <span class="c-theme-link">&times;</span>
+                </form>
+                <!-- END: QUICK SEARCH -->
+                <!-- BEGIN: HOR NAV -->
+                <!-- BEGIN: LAYOUT/HEADERS/MEGA-MENU -->
+                <!-- BEGIN: MEGA MENU -->
+                <!-- Dropdown menu toggle on mobile: c-toggler class can be applied to the link arrow or link itself depending on toggle mode -->
+                <nav class="c-mega-menu c-pull-right c-mega-menu-dark c-mega-menu-dark-mobile c-theme c-fonts-uppercase c-fonts-bold">
+                    <ul class="nav navbar-nav c-theme-nav">
+                        <li class="c-active">
+                            <a href="javascript:;" class="c-link dropdown-toggle">Home
+                                <span class="c-arrow c-toggler"></span>
+                            </a>
+                        </li>
+                        <li class="c-menu-type-classic">
+                            <a href="javascript:;" class="c-link dropdown-toggle">Buy
+                                <span class="c-arrow c-toggler"></span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="javascript:;" class="c-link dropdown-toggle">Shop
+                                <span class="c-arrow c-toggler"></span>
+                            </a>
+                        </li>
+                        <li>
+                        @php
+                            $class = "display:none";
+                            $count = 0;
+                            if(Session::has('cart')){
+                              $class = 'display:block';
+                              $count = Session::get('cart')->totalQty;
+                            }
+                        @endphp
                         <li style="{{$class}}" class="c-search-toggler-wrapper cart_icon">
                             <a href="/shop/shop-cart" class="c-link dropdown-toggle">
                                 <i class="fa fa-shopping-cart" area-hidden="true"></i>
                                 <span class="badge cart_icon_count"> {{ $count }} </span>
                             </a>
                         </li>
-                        <li>
+                        <li class="c-active">
                         @if (Auth::check())
                             <a href="javascript:;" class="c-link dropdown-toggle">
                                 <i class="icon-user"></i> {{ Auth::user()->last_name }}, {{ Auth::user()->first_name }}
+                                <span class="c-arrow c-toggler"></span>
                             </a>
                             <ul class="dropdown-menu c-menu-type-classic c-pull-left">
                                 <li class="dropdown-submenu">
-                                    {{--<a href="user/profile/{{Auth::user()->id}}">My Room--}}
-                                    <a href="/user/profile">My Room
+                                    <a href="user/profile">My Room
                                         <span class="c-arrow c-toggler"></span>
                                     </a>
                                 </li>
@@ -174,25 +123,49 @@
                                     </a>
                                 </li>
                             </ul>
+
+                            {{--<a href="javascript:;" class="c-link dropdown-toggle">
+                                <i class="icon-user"></i> {{ Auth::user()->last_name }}, {{ Auth::user()->first_name }}
+                            </a>
+                            <ul class="dropdown-menu c-menu-type-classic c-pull-left">
+                                <li class="dropdown-submenu">
+                                    <a href="user/profile/{{Auth::user()->id}}">My Room
+                                    <a href="/user/profile">My Room
+                                        <span class="c-arrow c-toggler"></span>
+                                    </a>
+                                </li>
+                                <li class="dropdown-submenu">
+                                    <a href="/user/logout/{{Auth::user()->id}}">logout
+                                        <span class="c-arrow c-toggler"></span>
+                                    </a>
+                                </li>
+                            </ul>--}}
                         @else
                             <a href="javascript:;" data-toggle="modal" data-target="#signin-form"
                                class="c-btn-border-opacity-04 c-btn btn-no-focus c-btn-header btn btn-sm c-btn-border-1x c-btn-white c-btn-circle c-btn-uppercase c-btn-sbold">
                                 <i class="icon-user"></i> Sign In</a>
                         @endif
-                    </li>
-
-                </ul>
-            </nav>
-            <!-- END: MEGA MENU -->
-            <!-- END: LAYOUT/HEADERS/MEGA-MENU -->
-            <!-- END: HOR NAV -->
+                        </li>
+                        {{--<li>
+                            <a href="javascript:;" data-toggle="modal" data-target="#login-form" class="c-btn-border-opacity-04 c-btn btn-no-focus c-btn-header btn btn-sm c-btn-border-1x c-btn-white c-btn-circle c-btn-uppercase c-btn-sbold">
+                                <i class="icon-user"></i> Sign In</a>
+                        </li>
+                        <li class="c-quick-sidebar-toggler-wrapper">
+                            <a href="#" class="c-quick-sidebar-toggler">
+                                <span class="c-line"></span>
+                                <span class="c-line"></span>
+                                <span class="c-line"></span>
+                            </a>
+                        </li>--}}
+                    </ul>
+                </nav>
+                <!-- END: MEGA MENU -->
+                <!-- END: LAYOUT/HEADERS/MEGA-MENU -->
+                <!-- END: HOR NAV -->
+            </div>
+            <!-- BEGIN: LAYOUT/HEADERS/QUICK-CART -->
+            <!-- END: LAYOUT/HEADERS/QUICK-CART -->
         </div>
-        <!-- BEGIN: LAYOUT/HEADERS/QUICK-CART -->
-        <!-- BEGIN: CART MENU -->
-
-        <!-- END: CART MENU -->
-        <!-- END: LAYOUT/HEADERS/QUICK-CART -->
-    </div>
     </div>
 </header>
 <!-- END: HEADER -->

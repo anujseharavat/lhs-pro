@@ -53,7 +53,7 @@ Route::get('/course', 'ShopController@course')->name('course');
 Route::prefix('user')->group(function () {
     Route::middleware('guest')->group(function() {
         Route::get('register', 'RegistrationController@create');
-        Route::post('register', 'RegistrationController@store');
+        Route::post('register', 'RegistrationController@store')->name('register_user');
 
         Route::get('login', 'SessionController@create')->name('login');
         Route::post('login', 'SessionController@store');
@@ -79,6 +79,7 @@ Route::prefix('user')->group(function () {
         Route::get('content-room/{id}', 'UserController@getUserContent');
         Route::post('content-room', 'UserController@postUserContentStatus')->name('user-content-status');
         Route::get('content-room2', 'UserController@postUserContentStatus2')->name('user-content-status2');
+        Route::get('progress-summary', 'UserController@getProgressSummary')->name('progress_summary');
     });
 });
 

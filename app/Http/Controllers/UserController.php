@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use \App;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
@@ -207,8 +208,8 @@ class UserController extends Controller
                         $lessons = $user->userLessonMaps()->get();
                         return view('room.semester-room',
                             ['sems' => $sems, 'activeSem' => $activeSem,
-                                'subs' => $subs, 'id' => $id,
-``                            ]);
+                                'subs' => $subs, 'id' => $id, 'lessons' => $lessons
+                            ]);
                     }
                 }
             }
@@ -219,6 +220,59 @@ class UserController extends Controller
                 'lessons' => $lessons, 'activeLesson' => $activeLesson,
                 'test' => $tests, 'activeTest' => $activeTest
             ]);
+    }
+
+    public function getProgressSummary()
+    {
+        /*$data = DB::table('user_semester_maps as usm')
+            ->join('user_subject_maps as ussm', 'usm.user_id', '=', 'ussm.user_id')
+            ->join('user_lesson_maps as ulm', 'ulm.user_id', '=', 'ussm.user_id')
+            ->join('user_content_maps as ucm', 'ucm.user_id', '=', 'ulm.user_id')
+            ->join('subjects as s', 's.id', '=', 'ussm.subject_id')
+            ->join('semesters as se', 'se.id', '=', 's.semester_id')
+            ->where('usm.user_id', '=', 2);
+
+        dd($data->get());*/
+
+        $select_data = [
+          'sm.name AS sem_name',
+          's.name AS sub_name',
+          'l.name AS les_name',
+          'ucm.status AS status',
+        ];
+
+        $data = DB::table('user_content_maps as ucm')
+            ->join('contents as c', 'c.id', '=', 'ucm.content_id')
+            ->join('lessons as l', 'c.lesson_id', '=', 'l.id')
+            ->join('subjects as s', 's.id', 'l.subject_id')
+            ->join('semesters as sm', 'sm.id', 's.semester_id')
+            ->select($select_data)->get();
+
+        $this->objToArray($data, $data_new);
+
+        return view('room.progress-summary',['progress_data' => $data_new]);
+    }
+
+    function objToArray($obj, &$arr){
+
+        if(!is_object($obj) && !is_array($obj)){
+            $arr = $obj;
+            return $arr;
+        }
+
+        foreach ($obj as $key => $value)
+        {
+            if (!empty($value))
+            {
+                $arr[$key] = array();
+                $this->objToArray($value, $arr[$key]);
+            }
+            else
+            {
+                $arr[$key] = $value;
+            }
+        }
+        return $arr;
     }
 
     public function getUserLesson($id)

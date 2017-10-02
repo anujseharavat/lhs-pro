@@ -66,8 +66,8 @@
             data: {'_token': "{{csrf_token()}}", 'content_id': content_id}
         }).success(function (status) {
 //            alert('Status is: '+status);
-            $('#btnCompelete').html('Completed').prop('disabled', true);
-            $('#btnCompelete2').show().html('Activated').prop('disabled', true);
+            $('#btnCompelete').attr('disabled',true).html('Completed');
+//            $('#btnCompelete2').show().html('Activated').prop('disabled', true);
 //            $('#btnCompelete').prop('disabled', true);
 //            $('.cart_icon').show();
 //            $('.cart_icon_count').html(total_cart_items);

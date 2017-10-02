@@ -74,7 +74,9 @@
         </div>
     </div>
 @endsection
+@if (!Auth::check())
 @include('user.partial.signin-modal')
+@endif
 <script type="text/javascript">
     function courseActivate(self){
         var course_id = $(self).data('course-id');

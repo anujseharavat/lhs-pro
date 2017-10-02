@@ -1,8 +1,10 @@
 <div class="modal-body">
+
     <h3 class="c-font-24 c-font-sbold">Create An Account</h3>
     <p>Please fill in below form to create an account with us</p>
     @include('layout.errors')
-    <form method="post" action="/user/register">
+    <div class="user-reg-error" id="user_error" style="display:none;">User Already exists.</div>
+    <form id="registration_form">
         {{ csrf_field() }}
         <div class="form-group">
             <label for="first_name" class="hide">First Name</label>
@@ -28,7 +30,7 @@
             <input type="password" class="form-control input-lg c-square" id="password" name="password"
                    value="a" placeholder="Password" required></div>
         <div class="form-group">
-            <button type="submit"
+            <button type="button" onclick="submitRegistration()"
                     class="btn c-theme-btn btn-md c-btn-uppercase c-btn-bold c-btn-square c-btn-login">
                 Signup
             </button>
@@ -37,3 +39,18 @@
         </div>
     </form>
 </div>
+
+<script type="text/javascript">
+
+    function submitRegistration(){
+        $.post("{{route('register_user')}}", $('#registration_form').serialize())
+            .done(function(response) {
+                if(response === 'user_exists'){
+                    $('#user_error').html('Sorry, User already exists.!').show();
+                }
+            })
+            .fail(function() {
+                alert( "error" );
+            });
+    }
+</script>

@@ -52,6 +52,7 @@ Follow: http://www.twitter.com/themehats
     <link rel="shortcut icon" href="favicon.ico" /> </head>
 
 <body class="c-layout-header-fixed c-layout-header-mobile-fixed c-layout-header-topbar c-layout-header-topbar-collapse">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 @include('layout.shop.header')
 @include('layout.shop.partial.forgot-password')
 @include('layout.shop.partial.signin-modal')
