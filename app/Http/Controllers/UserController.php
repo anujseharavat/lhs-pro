@@ -246,9 +246,15 @@ class UserController extends Controller
             ->join('lessons as l', 'c.lesson_id', '=', 'l.id')
             ->join('subjects as s', 's.id', 'l.subject_id')
             ->join('semesters as sm', 'sm.id', 's.semester_id')
-            ->select($select_data)->get();
-
-        $this->objToArray($data, $data_new);
+            //->where('ucm.user_id','==',1)
+            ->select($select_data)
+            ->where('ucm.user_id','=',auth()->user()->id)
+            ->get();
+            //->where('user_id','=',auth()->user()->id);
+        $data_new = null;
+        if($data){
+            $this->objToArray($data, $data_new);
+        }
 
         return view('room.progress-summary',['progress_data' => $data_new]);
     }

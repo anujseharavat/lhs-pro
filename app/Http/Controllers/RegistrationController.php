@@ -26,6 +26,7 @@ class RegistrationController extends Controller
      */
     public function store(Request $request)
     {
+        //return 'store';
         //dd('store');
         $this->validate($request,[
             'first_name' => 'required|string|min:1'
@@ -43,11 +44,12 @@ class RegistrationController extends Controller
 //        \App\User:where('email','=', )
         try{
             $data = User::where('email','=', request('email'))->first()->email;
+            //return $data;
             if($data){
                 return 'user_exists';
             }
         }catch (\Exception $exception){
-
+            //return $exception->getMessage();
         }
 
         $user = User::create([
@@ -57,9 +59,12 @@ class RegistrationController extends Controller
             'email' => request('email'),
             'password' => bcrypt(request('password'))
         ]);
+
+        return $user;
         auth()->login($user);
 
         if (Session::has('oldUrl')){
+            dd('older url');
             $oldUrl = Session::get('oldUrl');
             Session::forget('oldUrl');
             return redirect()->to($oldUrl);

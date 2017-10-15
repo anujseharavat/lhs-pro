@@ -7080,7 +7080,8 @@ h1 {
   padding-bottom: 20px; }
   .c-content-testimonial-3 > .c-content {
     padding: 29px;
-    position: relative; }
+    position: relative;
+    height:250px; }
     .c-content-testimonial-3 > .c-content:after,
     .c-content-testimonial-3 > .c-content:before {
       top: 100%;

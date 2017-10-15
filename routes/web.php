@@ -23,6 +23,7 @@
 //})->name('home');
 
 Route::get('/', 'CourseController@index')->name('home');
+Route::get('/features', 'CourseController@getFeatures')->name('features');
 Route::prefix('shop')->group(function () {
     Route::post('add-to-cart', 'ShopController@getAddToCart')->name('add_to_cart');
     Route::get('shop-cart', 'ShopController@getCart')->name('product.shopCart');
@@ -38,6 +39,7 @@ Route::prefix('shop')->group(function () {
 
 Route::get('/test', 'ShopController@test')->name('test');
 Route::get('/course', 'ShopController@course')->name('course');
+
 
 //Route::prefix('room')->group(function () {
 //    Route::middleware('auth')->group(function(){

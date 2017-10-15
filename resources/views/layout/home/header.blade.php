@@ -76,17 +76,29 @@
                 <nav class="c-mega-menu c-pull-right c-mega-menu-dark c-mega-menu-dark-mobile c-theme c-fonts-uppercase c-fonts-bold">
                     <ul class="nav navbar-nav c-theme-nav">
                         <li class="c-active">
-                            <a href="javascript:;" class="c-link dropdown-toggle">Home
+                            <a href="{{route('home')}}" class="c-link dropdown-toggle">Home
                                 <span class="c-arrow c-toggler"></span>
                             </a>
                         </li>
                         <li class="c-menu-type-classic">
-                            <a href="javascript:;" class="c-link dropdown-toggle">Buy
+                            <a href="{{route('features')}}" class="c-link dropdown-toggle">Features
                                 <span class="c-arrow c-toggler"></span>
                             </a>
+                            {{--<ul class="dropdown-menu c-menu-type-classic c-pull-left">--}}
+                                {{--<li class="dropdown-submenu">--}}
+                                    {{--<a href="javascript:;">Feature 1--}}
+                                        {{--<span class="c-arrow c-toggler"></span>--}}
+                                    {{--</a>--}}
+                                {{--</li>--}}
+                                {{--<li class="dropdown-submenu">--}}
+                                    {{--<a href="#">Feature 2--}}
+                                        {{--<span class="c-arrow c-toggler"></span>--}}
+                                    {{--</a>--}}
+                                {{--</li>--}}
+                            {{--</ul>--}}
                         </li>
                         <li>
-                            <a href="javascript:;" class="c-link dropdown-toggle">Shop
+                            <a href="javascript:;" class="c-link dropdown-toggle">About
                                 <span class="c-arrow c-toggler"></span>
                             </a>
                         </li>

@@ -29,7 +29,7 @@
                     <li><a href="{{ URL::to('user/profile') }}">My Profile</a></li>
                     <li><a href="{{ URL::to('user/reset-password') }}">Password Reset</a></li>
                     <li><a href="{{ URL::to('user/order-history-room') }}">Order History</a></li>
-                    <li><a href="{{ URL::to('user/order-history-room') }}">Activate Course</a></li>
+                    <li><a href="{{ route('progress_summary') }}">Progress Summary</a></li>
                 </ul>
             </li>
             <li><a href="app-student-messages.html"><i class="fa fa-comments"></i><span>Messages</span></a></li>

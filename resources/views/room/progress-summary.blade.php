@@ -5,6 +5,7 @@
     <div class="panel panel-default">
         <!-- Progress table -->
         <div class="table-responsive">
+            @if ($progress_data)
             <table class="table v-middle">
                 <thead>
                 {{--@php dd($progress_data)@endphp--}}
@@ -44,33 +45,6 @@
                     @endforeach
                 </tr>
                 @endforeach
-                @foreach($progress_data as $table_data)
-                    <tr>
-                        <td></td>
-                        @foreach($table_data as $head => $table_values)
-                            @if($head == 'status')
-                                @php
-                                    switch($table_values){
-                                        case 1: $class_name = 'progress-bar-warning'; break;
-                                        case 2: $class_name = 'progress-bar-success'; break;
-                                        default: $class_name = 'progress-bar-not-added'; break;
-                                    }
-                                @endphp
-                                <td>
-                                    <div class="progress" style="width: 50%">
-                                        <div class="progress-bar {{$class_name}}" role="progressbar" aria-valuenow="100"
-                                             aria-valuemin="0" aria-valuemax="100" style="width:100%;">
-                                        </div>
-                                    </div>
-                                </td>
-                                @continue;
-                            @endif
-                            <td>{{$table_values}}</td>
-                        @endforeach
-                    </tr>
-                @endforeach
-
-
                 {{--<tr>
                     <td>
 
@@ -97,6 +71,9 @@
                 </tr>--}}
                 </tbody>
             </table>
+                @else
+                <p>No Record found</p>
+                @endif
         </div>
         <!-- // Progress table -->
 

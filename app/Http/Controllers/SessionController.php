@@ -37,12 +37,13 @@ class SessionController extends Controller
      */
     public function store(Request $request)
     {
-//        dump(request('email'));
+        //dd(request('email'));
 //        dd(request('password'));
         $this->validate($request, [
             'email' => 'required|email',
             'password' => 'required',
         ]);
+
         if (!auth()->attempt([
             'email' => request('email'),
             'password' => request('password')])){
@@ -51,6 +52,7 @@ class SessionController extends Controller
                 'message' => 'Please check your credentials and try again'
             ]);
         }
+
         if (Session::has('oldUrl')){
             $oldUrl = Session::get('oldUrl');
             Session::forget('oldUrl');

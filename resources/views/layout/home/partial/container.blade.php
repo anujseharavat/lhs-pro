@@ -4,7 +4,7 @@
     {{--@include('home.steps')--}}
     {{--@include('home.latest-item')--}}
     {{--@include('home.latest-item4')--}}
-    {{--@include('home.testimonials')--}}
+    @include('layout.home.partial.testimonials')
     {{--@include('home.stat-counter')--}}
     {{--@include('home.tab-2')--}}
     {{--@include('home.latest-work')--}}

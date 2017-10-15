@@ -15,6 +15,10 @@ use Auth;
 class CourseController extends Controller
 {
 
+    public function getFeatures()
+    {
+        return view('features');
+    }
     public function index()
     {
         $userCourses = collect();

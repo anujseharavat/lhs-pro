@@ -45,12 +45,15 @@
     function submitRegistration(){
         $.post("{{route('register_user')}}", $('#registration_form').serialize())
             .done(function(response) {
-                if(response === 'user_exists'){
+                //alert(response);
+                if(response == 'user_exists'){
                     $('#user_error').html('Sorry, User already exists.!').show();
+
                 }
+                $('#user_error').html(response).show();
             })
             .fail(function() {
-                alert( "error" );
+                alert( "Registration failed" );
             });
     }
 </script>
