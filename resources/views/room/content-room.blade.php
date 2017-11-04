@@ -3,7 +3,8 @@
     <div class="st-content-inner padding-none">
         {{--<div class="container-fluid">--}}
         {{--<div class="page-section third" style="border:1px solid lightgrey;">--}}
-        @if ($content->status)
+        {{--@if ($content->status)--}}
+        @if ($content->isActive())
             <div class="panel panel-default  curriculum paper-shadow" data-z="0.5">
                 <div class="row" style="background-color:lightgrey; ">
 
@@ -23,9 +24,9 @@
                     </video>
                 </div>
                 <div class="pull-right">
-                    <a id="btnCompelete" class="btn btn-primary {{$content->status == 1 ? 'active' : 'disabled'}} "
+                    <a id="btnCompelete" class="btn btn-primary {{$content->status != 2 ? 'active' : 'disabled'}} "
                        href="#collapseExample{{1}}" onclick="updateContentStatus(this)" data-content-id="{{$content->content_id}}">
-                        {{$content->status == 1 ? 'Complete' : $content->statusName->name}}
+                        Complete{{--{{$content->status == 1 ? 'Complete' : $content->statusName->name}}--}}
                     </a>
                     <a  href="{{ route('lesson-room',["id" => $content->content->lesson_id])}}" class="btn btn-info">Back</a>
                     {{--<a  class="btn btn-primary active" id="btnCompelete2"> test</a>--}}

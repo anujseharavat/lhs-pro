@@ -25,7 +25,7 @@
                                         <div class="panel-heading panel-heading-gray"
                                              data-toggle="{{ $sub->isActive() ? 'collapse' : '' }}"
                                              data-target="#subject-{{$sub->subject_id}}" aria-expanded="false">
-                                            <div class="media {{ $sub->status < 1 ? 'bg-grey-300' :  ($sub->status == 1 ? 'bg-amber-300': 'bg-green-300') }}">
+                                            <div class="media bg-blue-100">
                                                 <div class="media-left">
                                             <span class="icon-block img-circle bg-indigo-300 half text-white"><i
                                                         class="fa fa-graduation-cap"></i></span>
@@ -34,13 +34,13 @@
                                                     <h4 class="text-headline ">{{ $sub->subject->name }}</h4>
                                                     <p>Subject description here</p>
                                                 </div>
-                                                <div class="media-right">
-                                                    <a class="btn btn-primary" data-toggle="collapse"
-                                                       href="#collapseExample{{1}}" aria-expanded="false"
-                                                       aria-controls="collapseExample">
-                                                        {{ $sub->statusName->name}}
-                                                    </a>
-                                                </div>
+                                                {{--<div class="media-right">--}}
+                                                    {{--<a class="btn btn-primary" data-toggle="collapse"--}}
+                                                       {{--href="#collapseExample{{1}}" aria-expanded="false"--}}
+                                                       {{--aria-controls="collapseExample">--}}
+                                                        {{--{{ $sub->statusName->name}}--}}
+                                                    {{--</a>--}}
+                                                {{--</div>--}}
                                             </div>
                                         </div>
                                         {{--Lesson List--}}
@@ -57,11 +57,11 @@
                                                                 <i class="fa fa-fw fa-circle {{ $lesson->status < 1 ? 'text-grey-300' :  ($lesson->status == 1 ? 'text-amber-300': 'text-green-300') }} ">
                                                                 </i> <a href="{{ URL::to('/user/lesson-room/'.$lesson->lesson_id) }}">{{ $lesson->lesson->name }}</a>
                                                             </div>
-                                                            <div class="media-right">
+                                                            {{--<div class="media-right">
                                                                 <div class="width-100 text-right text-caption">2:03 min
                                                                     lesson
                                                                 </div>
-                                                            </div>
+                                                            </div>--}}
                                                         </div>
                                                     @endif
                                                 @endforeach

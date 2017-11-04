@@ -11,7 +11,7 @@ class UserSubjectMap extends Model
         return $this->hasOne('App\Subject', 'id', 'subject_id');
     }
     public function isActive(){
-        return $this->status != '0';
+        return true;//$this->status != '0';
     }
     public function statusName(){
         return $this->hasOne('App\Status', 'id', 'status');

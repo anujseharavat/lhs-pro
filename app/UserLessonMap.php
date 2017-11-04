@@ -12,7 +12,7 @@ class UserLessonMap extends Model
     }
     public function isActive()
     {
-        return $this->status == '1';
+        return true;//$this->status == '1';
     }
 
 //    public function getMax($id)

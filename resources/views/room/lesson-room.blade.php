@@ -23,11 +23,11 @@
                                         <i class="fa fa-fw fa-circle text-green-300"></i>
                                     @endif
 
-                                        @if ($userContent->status == 0)
-                                            <span>{{ $userContent->content->details}}</span>
-                                        @else
+                                        {{--@if ($userContent->status == 0)--}}
+                                            {{--<span>{{ $userContent->content->details}}</span>--}}
+                                        {{--@else--}}
                                             <a href="{{ URL::to('/user/content-room/'.$userContent->content_id) }}">{{ $userContent->content->details}}</a>
-                                        @endif
+                                        {{--@endif--}}
 
                                 </div>
                                 <div class="media-right">

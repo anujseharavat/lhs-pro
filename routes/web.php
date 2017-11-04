@@ -30,27 +30,10 @@ Route::prefix('shop')->group(function () {
     Route::get('checkout', 'ShopController@getCheckout')->name('checkout')->middleware('auth');
     Route::post('checkout', 'ShopController@postCheckout')->name('checkout')->middleware('auth');
     Route::get('remove-from-cart/{id}', 'ShopController@getRemoveFromCart')->name('cart.remove');
-    Route::get('subject-select', 'ShopController@getSubjectSelect')->name('SubjectSelect');
-    Route::post('subject-select', 'ShopController@postSubjectSelect')->name('SubjectSelect');
 });
-//Route::post('orderdata', function (){
-//    dd('test');
-//})->name('orderdata');
 
 Route::get('/test', 'ShopController@test')->name('test');
 Route::get('/course', 'ShopController@course')->name('course');
-
-
-//Route::prefix('room')->group(function () {
-//    Route::middleware('auth')->group(function(){
-//        Route::get('index/{id}', 'UserController@index')->name('room.index');
-//        Route::get('dashboard', 'UserController@getUserDashboard');
-//    });
-//});
-//Route::get('/shop/shop-cart', function () {
-//    return view('shop.shop-cart');
-// })->name('product.shoppingCart');
-//Route::get('/shop/shop-cart', 'ShopController@index');
 
 Route::prefix('user')->group(function () {
     Route::middleware('guest')->group(function() {
@@ -70,6 +53,9 @@ Route::prefix('user')->group(function () {
         Route::get('order-history-room', 'UserController@getUserOrderHistoryRoom')->name('order-history');
         Route::post('course-activate', 'UserController@courseActivate')->name('course-activate');
 
+        Route::get('subject-select', 'UserController@getSubjectSelect')->name('subject_select');
+        Route::post('subject-select', 'UserController@postSubjectSelect')->name('subject_select');
+
         Route::get('purchase-history', 'UserController@getPurchaseHistory');
         Route::get('reset-password', 'UserController@getResetPassword');
         Route::post('reset-password', 'UserController@postResetPassword');
@@ -85,7 +71,22 @@ Route::prefix('user')->group(function () {
     });
 });
 
-
+/*
 //Auth::routes();
 //
 //Route::get('/home', 'HomeController@index')->name('home');
+
+//Route::post('orderdata', function (){
+//    dd('test');
+//})->name('orderdata');
+
+//Route::prefix('room')->group(function () {
+//    Route::middleware('auth')->group(function(){
+//        Route::get('index/{id}', 'UserController@index')->name('room.index');
+//        Route::get('dashboard', 'UserController@getUserDashboard');
+//    });
+//});
+//Route::get('/shop/shop-cart', function () {
+//    return view('shop.shop-cart');
+// })->name('product.shoppingCart');
+//Route::get('/shop/shop-cart', 'ShopController@index');*/

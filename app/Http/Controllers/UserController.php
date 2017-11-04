@@ -327,7 +327,7 @@ class UserController extends Controller
                 $userContent2 = $userContent2->first();
 
                 //if all content of 1 lesson changed then set the lesson1 & lesson2 status
-                if ($userContent1->content->lesson_id != $userContent2->content->lesson_id) {
+                /*if ($userContent1->content->lesson_id != $userContent2->content->lesson_id) {
                     //set lesson1 status to 2 as completed
                     $userLesson1 = App\UserLessonMap::where(['lesson_id' => $userContent1->content->lesson_id, 'user_id' => $user->id]);
                     $status = $userLesson1->update(['status' => 2]);
@@ -368,8 +368,8 @@ class UserController extends Controller
                             }
                         }
                     }
-                }
-            }else{
+                }*/
+            }/*else{
                 $maxlessonId = $user->userLessonMaps()->max('lesson_id');
                 $userLesson2 = App\UserLessonMap::where(['lesson_id' => $maxlessonId, 'user_id' => $user->id]);
                 $status = $userLesson2->update(['status' => 2]);
@@ -381,7 +381,7 @@ class UserController extends Controller
                 $maxSemesterId = $user->userSemesterMaps()->max('semester_id');
                 $userSemester2 = App\UserSemesterMap::where(['semester_id' => $maxSemesterId, 'user_id' => $user->id]);
                 $status = $userSemester2->update(['status' => 2]);
-            }
+            }*/
         }
         return $status;
     }
@@ -405,7 +405,7 @@ class UserController extends Controller
                 $userContent2 = $userContent2->first();
 
                 //if all content of 1 lesson changed then set the lesson1 & lesson2 status
-                if ($userContent1->content->lesson_id != $userContent2->content->lesson_id) {
+                /*if ($userContent1->content->lesson_id != $userContent2->content->lesson_id) {
                     //set lesson1 status to 2 as completed
                     $userLesson1 = App\UserLessonMap::where(['lesson_id' => $userContent1->content->lesson_id, 'user_id' => $user->id]);
                     $status = $userLesson1->update(['status' => 2]);
@@ -446,8 +446,10 @@ class UserController extends Controller
                             }
                         }
                     }
-                }
-            }else{
+                }*/
+            }
+            /*
+            else{
                 $maxlessonId = $user->userLessonMaps()->max('lesson_id');
                 $userLesson2 = App\UserLessonMap::where(['lesson_id' => $maxlessonId, 'user_id' => $user->id]);
                 $status = $userLesson2->update(['status' => 2]);
@@ -459,7 +461,7 @@ class UserController extends Controller
                 $maxSemesterId = $user->userSemesterMaps()->max('semester_id');
                 $userSemester2 = App\UserSemesterMap::where(['semester_id' => $maxSemesterId, 'user_id' => $user->id]);
                 $status = $userSemester2->update(['status' => 2]);
-            }
+            }*/
         }
         return back();
 //        return redirect()->route('lesson-room',['lesson' => $lesson, 'userContent'=>$userContents]);
@@ -478,5 +480,19 @@ class UserController extends Controller
             [
                 'content' => $userContent
             ]);
+    }
+    public function getSubjectSelect()
+    {
+        $subjects = DB::table('Subjects')->where('semester_id','=','1')->select('id', 'name')->get();
+//        dd($subjects);
+        return view('room.subject-select', ['subjects'=>$subjects]);
+    }
+    public function postSubjectSelect(Request $request)
+    {
+        $data = $request->all();
+        dd($data);
+        return back;
+        //return redirect()->route('home');
+        //return view('shop.subject-select');
     }
 }

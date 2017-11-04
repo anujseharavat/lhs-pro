@@ -34,10 +34,12 @@
         </div>
         <!-- /st-content -->
     </div>
-
+</div>
 <!-- /st-pusher -->
 @include('layout.room.footer')
-
+@if (!Auth::check())
+    @include('user.partial.signin-modal')
+@endif
 <!-- /st-container -->
 
 <!-- Inline Script for colors and config objects; used by various external scripts; -->
@@ -76,6 +78,81 @@ Do not use it simultaneously with the separate bundles above. -->
 Includes Custom Application JavaScript used for the current theme/module;
 Do not use it simultaneously with the standalone modules below. -->
 <script src="/user/js/app/app.js"></script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.min.css" rel="stylesheet" />
+{{--<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js"></script>--}}
+{{--<script src="/user/js/vendor/forms/select2.js"></script>--}}
+<script>
+    $(document).ready(function()
+    {
+        $('.ddlClass').select2({
+            placeholder: "Select a Subject",
+            allowClear: true,
+            minimumSelectionLength:2,
+            maximumSelectionLength:2
+        });
+        var slider = $('.c-layout-revo-slider .tp-banner');
+        var cont = $('.c-layout-revo-slider .tp-banner-container');
+        var api = slider.show().revolution(
+            {
+                sliderType: "standard",
+                sliderLayout: "fullscreen",
+                responsiveLevels: [2048, 1024, 778, 480],
+                gridwidth: [1170, 1024, 778, 480],
+                gridheight: [620, 768, 960, 720],
+                delay: 15000,
+                startwidth: 1170,
+                startheight: 620,
+                touchenabled: "on",
+                navigation:
+                    {
+                        keyboardNavigation: "off",
+                        keyboard_direction: "horizontal",
+                        mouseScrollNavigation: "off",
+                        onHoverStop: "on",
+                        arrows:
+                            {
+                                style: "circle",
+                                enable: true,
+                                hide_onmobile: false,
+                                hide_onleave: false,
+                                tmp: '',
+                                left:
+                                    {
+                                        h_align: "left",
+                                        v_align: "center",
+                                        h_offset: 30,
+                                        v_offset: 0
+                                    },
+                                right:
+                                    {
+                                        h_align: "right",
+                                        v_align: "center",
+                                        h_offset: 30,
+                                        v_offset: 0
+                                    }
+                            }
+                    },
+                spinner: "spinner2",
+                shadow: 0,
+                fullWidth: "off",
+                forceFullWidth: "off",
+                disableProgressBar: "on",
+                hideThumbsOnMobile: "on",
+                hideNavDelayOnMobile: 1500,
+                hideBulletsOnMobile: "on",
+                hideArrowsOnMobile: "on",
+                hideThumbsUnderResolution: 0
+            });
+        api.bind("revolution.slide.onchange", function(e, data)
+        {
+            $('.c-layout-header').removeClass('hide');
+            setTimeout(function()
+            {
+                $('.c-singup-form').fadeIn();
+            }, 1500);
+        });
+    }); //ready
+</script>
 
 </body>
 

@@ -39,14 +39,9 @@
                                                         <a class="btn btn-primary" data-toggle="collapse" href="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
                                                             {{ $item['id'] }}
                                                         </a>
-                                                        <div class="collapse" id="collapseExample">
-                                                            <div class="">
-                                                                Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident.
-                                                            </div>
-                                                        </div>
                                                     </td>
                                                     <td>
-                                                        <a href="{{route('course-activate')}}" data-toggle="modal"
+                                                        <a href="{{route('subject_select')}}" data-toggle="modal"
                                                            class="c-btn-border-opacity-04 c-btn btn-no-focus c-btn-header btn btn-sm c-btn-border-1x c-btn-white c-btn-circle c-btn-uppercase c-btn-sbold">
                                                             <i class="icon-user"></i>{{ $item->course->name }}</a>
                                                     </td>
@@ -74,9 +69,7 @@
         </div>
     </div>
 @endsection
-@if (!Auth::check())
-@include('user.partial.signin-modal')
-@endif
+
 <script type="text/javascript">
     function courseActivate(self){
         var course_id = $(self).data('course-id');

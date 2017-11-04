@@ -141,18 +141,6 @@ class ShopController extends Controller
         //return view('shop.shop-cart', ['courses' => $cart->items, 'totalPrice' => $cart->totalPrice]);
     }
 
-
-    public function getSubjectSelect()
-    {
-        return view('shop.subject-select');
-    }
-    public function postSubjectSelect(Request $request)
-    {
-        $data = $request->all();
-        dd($data);
-        return redirect()->route('home');
-        //return view('shop.subject-select');
-    }
     public function OrderDataPost($postData){ // This is the function which I want to call from ajax
         //do something awesome with that post data
         return "I am in";

@@ -17,6 +17,6 @@ class UserContentMap extends Model
         return $this->hasOne('App\Status', 'id', 'status');
     }
     public function isActive(){
-        return $this->status != '1';
+        return true;//$this->status != '1';
     }
 }

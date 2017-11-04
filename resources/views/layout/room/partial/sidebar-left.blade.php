@@ -32,7 +32,7 @@
                     <li><a href="{{ route('progress_summary') }}">Progress Summary</a></li>
                 </ul>
             </li>
-            <li><a href="app-student-messages.html"><i class="fa fa-comments"></i><span>Messages</span></a></li>
+            {{--<li><a href="app-student-messages.html"><i class="fa fa-comments"></i><span>Messages</span></a></li>--}}
             <li><a href="/user/logout/{{Auth::user()->id}}">logout<span class="c-arrow c-toggler"></span></a></li>
         </ul>
     </div>

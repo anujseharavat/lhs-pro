@@ -55,18 +55,18 @@
                                             <div class="col-md-2"><strong>Duration</strong></div>
                                             <div class="col-md-10">{{ $course['duration'] }}</div>
                                         </div>
-                                        {{--<div class="row">--}}
-                                        {{--<div class="col-md-9">--}}
-                                        {{--<select class="ddlClass" id="ddlClass_{{$course['id']}}" style="width: 100%" multiple="multiple">--}}
-                                        {{--<option selected value="Accord">Physics</option>--}}
-                                        {{--<option selected value="Duster">Chemistry</option>--}}
-                                        {{--<option value="Esteem">Maths</option>--}}
-                                        {{--<option value="Fiero">Enligsh</option>--}}
-                                        {{--<option value="Lancer">French</option>--}}
-                                        {{--<option value="Phantom">German</option>--}}
-                                        {{--</select>--}}
-                                        {{--</div>--}}
-                                        {{--</div>--}}
+                                        <div class="row">
+                                        <div class="col-md-9">
+                                        <select class="ddlClass" id="ddlClass_{{$course['id']}}" style="width: 100%" multiple="multiple">
+                                        <option selected value="Accord">Physics</option>
+                                        <option selected value="Duster">Chemistry</option>
+                                        <option value="Esteem">Maths</option>
+                                        <option value="Fiero">Enligsh</option>
+                                        <option value="Lancer">French</option>
+                                        <option value="Phantom">German</option>
+                                        </select>
+                                        </div>
+                                        </div>
                                     </div>
                                 </td>
                                 <td>${{$course['price']}}</td>
@@ -125,6 +125,8 @@
     function callAddToCart(self) {
         var course_id = $(self).data('course-id');
         var course_name = $(self).data('course-name');
+
+//        alert($('.ddlClass').val());
 //        var aj = $(self).data('test-name');
 
 //        if(!selected_items || selected_items.length < 2){
