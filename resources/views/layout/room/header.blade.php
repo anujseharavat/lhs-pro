@@ -81,7 +81,8 @@
                 <!-- User -->
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle user" data-toggle="dropdown">
-                            <img src="/ images/people/110/guy-5.jpg" alt="Bill" class="img-circle" width="40"/> {{auth()->user()->last_name }},  {{auth()->user()->first_name }} <span
+                            {{--<img src="/ images/people/110/guy-5.jpg" alt="Bill" class="img-circle" width="40"/> --}}
+                            {{auth()->user()->last_name }},  {{auth()->user()->first_name }} <span
                                     class="caret"></span>
                         </a>
                         <ul class="dropdown-menu" role="menu">
@@ -91,7 +92,6 @@
                             <li><a href="/user/logout/{{Auth::user()->id}}">logout<span class="c-arrow c-toggler"></span></a></li>
                         </ul>
                     </li>
-
             </ul>
             @endif
         </div>

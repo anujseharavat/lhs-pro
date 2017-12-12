@@ -7,12 +7,12 @@
 @section('content')
     <div class="st-content-inner">
         <!-- extra div for emulating position:fixed of the menu -->
+        <form method="post" id="framework_form">
         <div class="panel panel-default">
             <div class="row select_row" >
-                <div class="col-md-3 sub_row1">Languages</div>
+                <div class="col-md-3 sub_row1">Languages2</div>
                 <div class="col-md-4">
-                    <select class="ddlClass sub_row2" id="ddlClass_1"
-                            multiple="multiple">
+                    <select id="framework" name="framework" multiple="multiple" class="multiselect-ui form-control">
                         @foreach($subjects as $sub)
                             {{--<option selected value="Accord">Physics</option>--}}
                             <option value="{{$sub->id}}">{{$sub->name}}</option>
@@ -69,6 +69,7 @@
                 </div>
             </div>
         </div>
+        </form>
     </div>
 @endsection
 

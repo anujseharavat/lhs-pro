@@ -36,20 +36,33 @@
                                                 <tbody>
                                                 <tr>
                                                     <td>
-                                                        <a class="btn btn-primary" data-toggle="collapse" href="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
-                                                            {{ $item['id'] }}
-                                                        </a>
+                                                        {{--<a class="btn btn-primary" data-toggle="collapse" href="#collapseExample" aria-expanded="false" aria-controls="collapseExample">--}}
+                                                            {{--{{ $item['id'] }}</a>--}}
+                                                        {{ $item['id'] }}
                                                     </td>
                                                     <td>
-                                                        <a href="{{route('subject_select')}}" data-toggle="modal"
-                                                           class="c-btn-border-opacity-04 c-btn btn-no-focus c-btn-header btn btn-sm c-btn-border-1x c-btn-white c-btn-circle c-btn-uppercase c-btn-sbold">
-                                                            <i class="icon-user"></i>{{ $item->course->name }}</a>
+                                                        {{--<a href="{{route('subject-selectm', ['course_id' => $item['course_id'],'order_detail_id' => $item['id']]) }}" data-toggle="modal"--}}
+                                                           {{--class="c-btn-border-opacity-04 c-btn btn-no-focus c-btn-header btn btn-sm c-btn-border-1x c-btn-white c-btn-circle c-btn-uppercase c-btn-sbold">--}}
+                                                            {{--<i class="icon-user"></i>{{ $item->course->name }}</a>--}}
+                                                        {{ $item->course->name }}
+                                                        {{--<a href="{{ URL::to('/user/lesson-room/'.$lesson->lesson_id) }}">save subject</a>--}}
+                                                        {{--"{{ route('semester-room', ['id' => $sem->semester_id]) }}"--}}
+                                                        {{--<a href="{{ URL::to('/user/save-subject/'.$item['course_id']) }}">save subject</a>--}}
+                                                        {{--<a href="{{route('save_subject', ['course_id' => $item['course_id'],'order_detail_id' => $item['id']]) }}">save subject</a>--}}
+{{--                                                        <a href="{{route('save_subject', ['course_id' => $item['course_id'],'order_detail_id' => $item['id']]) }}">save subject</a>--}}
+
                                                     </td>
                                                     {{--<td>{{ $item['qty'] }}</td>--}}
 {{--                                                    <td>{{ $item['price'] }}</td>--}}
                                                     <td>{{ $item['price'] }}</td>
                                                     <td>{{ $order['payment_status'] }}</td>
-                                                    <td><button id="btnorderdetail{{$item['id']}}" type="button" onclick="courseActivate(this)" data-course-id="{{$item['course_id']}}"  data-order-detail-id="{{$item['id']}}" class="btn btn-primary {{ ($order['payment_status'] == 'successful') && $item['status'] == 0 ? 'active':'disabled' }} "> {{ $item['status'] == 0 ? 'Activate' : 'Activated'  }}</button></td>
+                                                    <td>
+                                                        {{--<button id="btnorderdetail{{$item['id']}}" type="button" onclick="courseActivate(this)" data-course-id="{{$item['course_id']}}"  data-order-detail-id="{{$item['id']}}" class="btn btn-primary {{ ($order['payment_status'] == 'successful') && $item['status'] == 0 ? 'active':'disabled' }} "> {{ $item['status'] == 0 ? 'Activate' : 'Activated'  }}</button>--}}
+                                                        <a href="{{route('subject-selectm', ['course_id' => $item['course_id'],'order_detail_id' => $item['id']]) }}" data-toggle="modal"
+                                                           class="{{$item['status'] == 0 ? 'active':'disabled'}} c-btn-border-opacity-04 c-btn btn-no-focus c-btn-header btn btn-primary btn-sm c-btn-border-1x c-btn-white c-btn-circle c-btn-uppercase c-btn-sbold">
+                                                            <i class="icon-user"></i>Activate</a>
+
+                                                    </td>
                                                 </tr>
                                                 </tbody>
                                             @endforeach

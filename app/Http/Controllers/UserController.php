@@ -167,13 +167,6 @@ class UserController extends Controller
 
     public function getUserSemesterRoom($id=1)
     {
-
-//        $items = \DB::table('users')
-//            ->join('user_subject_maps', 'users.id', '=', 'user_subject_maps.user_id')
-//            ->join('subjects', 'subject_id', '=', 'subjects.id')
-//            ->select('subjects.*', 'users.first_name')
-//            ->get();
-//        dd($id);
         $sems = null;
         $activeSem = null;
         $subs = null;
@@ -195,23 +188,28 @@ class UserController extends Controller
             //dd($activeSem);
             if ($activeSem) {
                 $subs = $user->userSubjectMaps()->get();
-                //select subject only for given semester
+
                 foreach($subs as $sub){
                     if ($sub->subject->semester_id <> $id) {
-                        $subs->forget($sub->subject_id-1);
+                        $subs->forget($subs->search($sub));
                     }
                 }
 //                dd($subs);
-               if ($subs) {
-                    $activeSub = $user->activeSubject();
-                    if ($activeSub) {
-                        $lessons = $user->userLessonMaps()->get();
-                        return view('room.semester-room',
-                            ['sems' => $sems, 'activeSem' => $activeSem,
-                                'subs' => $subs, 'id' => $id, 'lessons' => $lessons
-                            ]);
-                    }
-                }
+//               if ($subs) {
+//                    $activeSub = $user->activeSubject();
+//                    if ($activeSub) {
+//                        $lessons = $user->userLessonMaps()->get();
+//                        return view('room.semester-room',
+//                            ['sems' => $sems, 'activeSem' => $activeSem,
+//                                'subs' => $subs, 'id' => $id, 'lessons' => $lessons
+//                            ]);
+//                    }
+//                }
+                $lessons = $user->userLessonMaps()->get();
+                return view('room.semester-room',
+                    ['sems' => $sems, 'activeSem' => $activeSem,
+                        'subs' => $subs, 'id' => $id, 'lessons' => $lessons
+                    ]);
             }
         }
         return view('room.semester-room',
@@ -487,11 +485,174 @@ class UserController extends Controller
 //        dd($subjects);
         return view('room.subject-select', ['subjects'=>$subjects]);
     }
+    public function getSubjectSelectm(Request $request)
+    {
+        $courseId = $request['course_id'];
+        $order_detail_id = $request['order_detail_id'];
+        $subjects = DB::table('Subjects')->select('id', 'name')->get();
+//        dd($subjects);
+        return view('shop.subject-select', ['subjects'=>$subjects,'course_id'=>$courseId, 'order_detail_id'=>$order_detail_id ]);
+    }
+    public function postSaveSubject(Request $request)
+    {
+        dump($request['course_id']);
+        dd($request['order_detail_id']);
+        $courseId = $request['course_id'];
+        $subs = $request['course_id'];
+
+//        //return $semesters->first();
+        $str = '2,3,4,6';
+        $sel = explode(",","2,3,6");
+//        dump($sel);
+//        $arr = array($str);
+//        $sub[] = array_map('intval', explode(',', $str));
+//        dump($sub);
+//        $subjects= App\Subject::where('id', '=', 1)
+//                    ->whereIn('id', $sub)
+//                    ->get();
+        //dd($subject);
+        $semesters = App\Course::find($courseId)->semesters;
+//        dump($semesters);
+        $first = 1;
+        $status = 0;
+//        foreach ($semesters as $semester) {
+////            dump('semester-'.$semester->id);
+//            $subjects = App\Subject::select('id','semester_id')->where('semester_id', '=', $semester->id)
+//                ->whereIn('id', $sel)
+//                ->get();
+//            dump($subjects);
+//        }
+//        return $courseId;
+        foreach ($semesters as $semester) {
+            if ($first) $status = 1;
+
+            \DB::table('user_semester_maps')->insert([
+                ['user_id' => auth()->user()->id,
+                    'semester_id' => $semester->id,
+                    'status' => $status
+                ]
+            ]);
+            //$val++;
+            $subjects = App\Subject::select('id','semester_id')
+                                    ->where('semester_id', '=', $semester->id)
+                                    ->whereIn('id', $sel)
+                                    ->get();
+//            dd($subjects);
+            foreach ($subjects as $subject) {
+                \DB::table('user_subject_maps')->insert([
+                    'user_id' => auth()->user()->id,
+                    'subject_id' => $subject->id,
+                    'status' => $status
+                ]);
+
+                $lessons = App\Lesson::where('subject_id', '=', $subject->id)->get();
+                foreach ($lessons as $lesson) {
+                    \DB::table('user_lesson_maps')->insert([
+                        'user_id' => auth()->user()->id,
+                        'lesson_id' => $lesson->id,
+                        'status' => $status
+                    ]);
+
+                    $contents = App\Content::where('lesson_id', '=', $lesson->id)->get();
+                    foreach ($contents as $content) {
+                        \DB::table('user_content_maps')->insert([
+                            'user_id' => auth()->user()->id,
+                            'content_id' => $content->id,
+                            'status' => $status
+                        ]);
+                        $first = 0;
+                        $status = 0;
+                    }
+                    $tests = App\Test::where('lesson_id', '=', $lesson->id)->get();
+                    foreach ($tests as $test) {
+                        \DB::table('user_test_maps')->insert(
+                            ['user_id' => auth()->user()->id,
+                                'test_id' => $test->id,
+                                'status' => $status
+                            ]);
+                    }
+//                    $first=0;
+//                    $status = 0;
+                }
+            }
+            //$first=0;
+            //dump('End Subjects---------');
+        }
+        $orderDetailId = $request['order_detail_id'];
+        $orderDetail = App\OrderDetail::find($orderDetailId);
+        $orderDetail->status = 1;
+        $orderDetail->save();
+//        return $orderDetail->status;
+        return view('shop.subject-select');
+    }
     public function postSubjectSelect(Request $request)
     {
-        $data = $request->all();
-        dd($data);
-        return back;
+        $selected = $request['selected'];
+//        return $selected;
+        $courseId = $request['course_id'];
+        $semesters = App\Course::find($courseId)->semesters;
+        $first = 1;
+        $status = 0;
+        foreach ($semesters as $semester) {
+            if ($first) $status = 1;
+
+            \DB::table('user_semester_maps')->insert([
+                ['user_id' => auth()->user()->id,
+                    'semester_id' => $semester->id,
+                    'status' => $status
+                ]
+            ]);
+            //$val++;
+            $subjects = App\Subject::select('id','semester_id')
+                ->where('semester_id', '=', $semester->id)
+                ->whereIn('id', $selected)
+                ->get();
+            //dd($subjects);
+            foreach ($subjects as $subject) {
+                \DB::table('user_subject_maps')->insert([
+                    'user_id' => auth()->user()->id,
+                    'subject_id' => $subject->id,
+                    'status' => $status
+                ]);
+
+                $lessons = App\Lesson::where('subject_id', '=', $subject->id)->get();
+                foreach ($lessons as $lesson) {
+                    \DB::table('user_lesson_maps')->insert([
+                        'user_id' => auth()->user()->id,
+                        'lesson_id' => $lesson->id,
+                        'status' => $status
+                    ]);
+
+                    $contents = App\Content::where('lesson_id', '=', $lesson->id)->get();
+                    foreach ($contents as $content) {
+                        \DB::table('user_content_maps')->insert([
+                            'user_id' => auth()->user()->id,
+                            'content_id' => $content->id,
+                            'status' => $status
+                        ]);
+                        $first = 0;
+                        $status = 0;
+                    }
+                    $tests = App\Test::where('lesson_id', '=', $lesson->id)->get();
+                    foreach ($tests as $test) {
+                        \DB::table('user_test_maps')->insert(
+                            ['user_id' => auth()->user()->id,
+                                'test_id' => $test->id,
+                                'status' => $status
+                            ]);
+                    }
+//                    $first=0;
+//                    $status = 0;
+                }
+            }
+            //$first=0;
+            //dump('End Subjects---------');
+        }
+        $orderDetailId = $request['order_detail_id'];
+        $orderDetail = App\OrderDetail::find($orderDetailId);
+        $orderDetail->status = 1;
+        $orderDetail->save();
+        return "Selected Subjects Saved Successfully";
         //return redirect()->route('home');
         //return view('shop.subject-select');
     }

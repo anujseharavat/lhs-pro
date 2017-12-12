@@ -30,6 +30,7 @@ Route::prefix('shop')->group(function () {
     Route::get('checkout', 'ShopController@getCheckout')->name('checkout')->middleware('auth');
     Route::post('checkout', 'ShopController@postCheckout')->name('checkout')->middleware('auth');
     Route::get('remove-from-cart/{id}', 'ShopController@getRemoveFromCart')->name('cart.remove');
+    Route::get('subject-select', 'ShopController@getShopSubjectSelect');
 });
 
 Route::get('/test', 'ShopController@test')->name('test');
@@ -53,8 +54,12 @@ Route::prefix('user')->group(function () {
         Route::get('order-history-room', 'UserController@getUserOrderHistoryRoom')->name('order-history');
         Route::post('course-activate', 'UserController@courseActivate')->name('course-activate');
 
+        Route::get('subject-selectm', 'UserController@getSubjectSelectm')->name('subject-selectm');
+
         Route::get('subject-select', 'UserController@getSubjectSelect')->name('subject_select');
-        Route::post('subject-select', 'UserController@postSubjectSelect')->name('subject_select');
+        Route::post('subject-select', 'UserController@postSubjectSelect')->name('post_subject_select');
+        Route::get('save-subject', 'UserController@postSaveSubject')->name('save_subject');
+
 
         Route::get('purchase-history', 'UserController@getPurchaseHistory');
         Route::get('reset-password', 'UserController@getResetPassword');

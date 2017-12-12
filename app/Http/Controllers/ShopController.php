@@ -115,6 +115,11 @@ class ShopController extends Controller
         return redirect()->route('home')->with('shop-success', 'You successfully purchased the course(s)');
     }
 
+    public function getShopSubjectSelect()
+    {
+        //$subjects = DB::table('Subjects')->where('semester_id','=','1')->select('id', 'name')->get();
+        return view('shop.subject-select');
+    }
     public function getRemoveFromCart($id)
     {
         //Session::forget('cart');

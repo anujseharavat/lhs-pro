@@ -44,7 +44,7 @@
                                             </div>
                                         </div>
                                         {{--Lesson List--}}
-                                        @if ($sub->isActive())
+{{--                                        @if ($sub->isActive())--}}
                                             {{--<div class="panel-heading" aria-expanded="false">--}}
                                             <div class="list-group collapse" id="subject-{{$sub->subject_id}}">
                                                 @foreach($lessons as $lesson)
@@ -54,8 +54,8 @@
                                                                 <div class="text-crt">L.{{ $lesson->lesson_id }}</div>
                                                             </div>
                                                             <div class="media-body">
-                                                                <i class="fa fa-fw fa-circle {{ $lesson->status < 1 ? 'text-grey-300' :  ($lesson->status == 1 ? 'text-amber-300': 'text-green-300') }} ">
-                                                                </i> <a href="{{ URL::to('/user/lesson-room/'.$lesson->lesson_id) }}">{{ $lesson->lesson->name }}</a>
+                                                                <i class="fa fa-fw fa-circle text-grey-300">
+                                                                </i> <a href="{{ URL::to('/user/lesson-room/'.$lesson->lesson_id) }}">{{ $lesson->lesson->name }}3</a>
                                                             </div>
                                                             {{--<div class="media-right">
                                                                 <div class="width-100 text-right text-caption">2:03 min
@@ -67,7 +67,7 @@
                                                 @endforeach
                                             </div>
                                             {{--</div>--}}
-                                        @endif
+                                        {{--@endif--}}
                                         {{--endd lesson--}}
                                     </div>
                                 {{--@endif--}}
