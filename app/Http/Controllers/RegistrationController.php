@@ -26,7 +26,6 @@ class RegistrationController extends Controller
      */
     public function store(Request $request)
     {
-        //return 'store';
         //dd('store');
         $this->validate($request,[
             'first_name' => 'required|string|min:1'
@@ -39,17 +38,18 @@ class RegistrationController extends Controller
 //        dump(request('first_name'));
 //        dump(request('last_name'));
 //        dump(request('country'));
-//        dump(request('email'));
+//        dd(request('email'));
 //        dd(request('password'));
 //        \App\User:where('email','=', )
         try{
-            $data = User::where('email','=', request('email'))->first()->email;
+            $count = User::where('email','=', request('email'))->count();
+//            dd($data);
             //return $data;
-            if($data){
+            if($count){
                 return 'user_exists';
             }
         }catch (\Exception $exception){
-            //return $exception->getMessage();
+            return $exception->getMessage();
         }
 
         $user = User::create([
@@ -59,20 +59,19 @@ class RegistrationController extends Controller
             'email' => request('email'),
             'password' => bcrypt(request('password'))
         ]);
-
-        return $user;
+        //dump($user);
         auth()->login($user);
 
         if (Session::has('oldUrl')){
-            dd('older url');
+//            dd('older url');
             $oldUrl = Session::get('oldUrl');
             Session::forget('oldUrl');
-            return redirect()->to($oldUrl);
+            return $oldUrl;
         }
         //$user = User::all()->first();
-        //session('message','this is details message');
-        //session()->flash('message', 'thanks so much for signup');
-        return redirect()->home();//->with('myemail', $user->first_name);
+//        session('message','this is details message');
+//        session()->flash('message', 'thanks so much for signup');
+        //return true;//redirect()->home();//->with('myemail', $user->first_name);
     }
 
     /**

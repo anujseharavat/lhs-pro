@@ -48,7 +48,10 @@
                 //alert(response);
                 if(response == 'user_exists'){
                     $('#user_error').html('Sorry, User already exists.!').show();
-
+                }
+                else{
+                    //window.location = data.url
+                    window.location = response;
                 }
                 $('#user_error').html(response).show();
             })
