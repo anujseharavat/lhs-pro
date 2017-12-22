@@ -21,15 +21,15 @@ class CourseTableSeeder extends Seeder
             'price' => '250'
         ]);
         $course->save();
-        $course = new \App\Course([
-            'product_code'=> 'LHS 99',
-            'name' => 'Toddler IGCSE',
-            'class_name' => 'toddlers',
-            'desc' => 'Rhymes',
-            'addons' => 'English, Maths & Science',
-            'duration' => '6 month',
-            'price' => '99'
-        ]);
-        $course->save();
+//        $course = new \App\Course([
+//            'product_code'=> 'LHS 99',
+//            'name' => 'Toddler IGCSE',
+//            'class_name' => 'toddlers',
+//            'desc' => 'Rhymes',
+//            'addons' => 'English, Maths & Science',
+//            'duration' => '6 month',
+//            'price' => '99'
+//        ]);
+//        $course->save();
     }
 }
